@@ -16,7 +16,7 @@ jobs:
         ref: gh-pages
     - name: Run archive
       id: archive
-      uses: tisonkun/zulip-archive-1@patch-1
+      uses: zulip/zulip-archive@master
       with:
         zulip_organization_url: ${{ secrets.zulip_organization_url }}
         zulip_bot_email: ${{ secrets.zulip_bot_email }}
