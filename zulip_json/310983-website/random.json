@@ -1,0 +1,86 @@
+[
+    {
+        "content": "<p>Stream created by <span class=\"user-mention silent\" data-user-id=\"456473\">tison</span>.</p>",
+        "id": 266232992,
+        "sender_full_name": "Notification Bot",
+        "timestamp": 1640669942
+    },
+    {
+        "content": "<p>This is a dedicated chat room about website of Engula.</p>\n<ul>\n<li>The website: <a href=\"https://engula.io/\">https://engula.io/</a></li>\n<li>The repository: <a href=\"https://github.com/engula/engula.github.io\">https://github.com/engula/engula.github.io</a></li>\n</ul>\n<p>See also <a href=\"https://github.com/engula/engula/discussions/218\">this discussion</a> for further information.</p>",
+        "id": 266233043,
+        "sender_full_name": "tison",
+        "timestamp": 1640670051
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"456473\">@tison</span> </p>\n<h2>ideas from @tison</h2>\n<p><a href=\"https://github.com/engula/engula/discussions/218#discussioncomment-1862799\">https://github.com/engula/engula/discussions/218#discussioncomment-1862799</a></p>\n<h2>main page</h2>\n<p>design in Figma(quick design for style): <a href=\"https://www.figma.com/file/tm9zhcNRisdiQEKG62oQvo/Untitled?node-id=0%3A1\">https://www.figma.com/file/tm9zhcNRisdiQEKG62oQvo/Untitled?node-id=0%3A1</a></p>\n<h2>events page</h2>\n<p>can like the: <a href=\"https://www.cockroachlabs.com/community/events/\">https://www.cockroachlabs.com/community/events/</a> (list with meta info)</p>\n<h2>blog page</h2>\n<p>can like the: <a href=\"https://apisix.apache.org/blog\">https://apisix.apache.org/blog</a> based on docusaurus</p>\n<h2>community page</h2>\n<ul>\n<li>contact sub-page</li>\n<li>resources sub-page</li>\n<li>team&amp;contributors sub-page</li>\n</ul>\n<p>can like the <a href=\"https://apisix.apache.org/docs/general/community\">https://apisix.apache.org/docs/general/community</a> based on docusaurus</p>",
+        "id": 266258277,
+        "sender_full_name": "northisle",
+        "timestamp": 1640697190
+    },
+    {
+        "content": "<p>the design of the main page aims to confirm the website`s style and brand colors, I Engula can have the unique color for self</p>",
+        "id": 266258671,
+        "sender_full_name": "northisle",
+        "timestamp": 1640697602
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"466652\">@northisle</span> thanks for your information. The links you share look good. Looking forward to a prototype.</p>\n<blockquote>\n<p>Engula can have the unique color for self</p>\n</blockquote>\n<p>What do you mean by this sentence? I like the Engula logo and it has white and black color barely :)</p>",
+        "id": 266270833,
+        "sender_full_name": "tison",
+        "timestamp": 1640707442
+    },
+    {
+        "content": "<p>thanks! I  also like the Engula logo, it`s simple and clean! will redesign some details in the prototype based on the color.</p>",
+        "id": 266308547,
+        "sender_full_name": "northisle",
+        "timestamp": 1640742612
+    },
+    {
+        "content": "<p>hi, <span class=\"user-mention\" data-user-id=\"456473\">@tison</span>, I lunched the prototype website of  Engula<br>\n<a href=\"https://engula-website-48kxgtabm-inorthisle.vercel.app/\">https://engula-website-48kxgtabm-inorthisle.vercel.app/</a><br>\ncan leave comments if have any doubt</p>",
+        "id": 266894001,
+        "sender_full_name": "northisle",
+        "timestamp": 1641353435
+    },
+    {
+        "content": "<p><a href=\"/user_uploads/39279/mvaVwNkkZcX-V9NnhZNbD3Ud/image.png\">image.png</a> ,going to make the SVG animation about this part,<br>\nEffect: scale and expand it when hovering the section</p>\n<div class=\"message_inline_image\"><a href=\"/user_uploads/39279/mvaVwNkkZcX-V9NnhZNbD3Ud/image.png\" title=\"image.png\"><img src=\"/user_uploads/39279/mvaVwNkkZcX-V9NnhZNbD3Ud/image.png\"></a></div>",
+        "id": 266894209,
+        "sender_full_name": "northisle",
+        "timestamp": 1641353692
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"466652\">@northisle</span> thank you! I'll check it out this week.</p>",
+        "id": 266894674,
+        "sender_full_name": "tison",
+        "timestamp": 1641354252
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"466652\">@northisle</span> would you mind to create a fork of engula/engula.github.io and submit a pull request to it or start an issue there? I do have some comments but it's easy to lose on chatroom. I'd prefer logging comments on GitHub and using Zulip as random topics &amp; immediate messaging.</p>",
+        "id": 267142111,
+        "sender_full_name": "tison",
+        "timestamp": 1641520655
+    },
+    {
+        "content": "<p>sure! will get start it during this week <span aria-label=\"bow\" class=\"emoji emoji-1f647\" role=\"img\" title=\"bow\">:bow:</span></p>",
+        "id": 267143754,
+        "sender_full_name": "northisle",
+        "timestamp": 1641522395
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"466652\">@northisle</span> any updates?</p>",
+        "id": 267361690,
+        "sender_full_name": "tison",
+        "timestamp": 1641740120
+    },
+    {
+        "content": "<p>yes, I just pushed the updates and opened the PR</p>",
+        "id": 267363038,
+        "sender_full_name": "northisle",
+        "timestamp": 1641742022
+    },
+    {
+        "content": "<p>let's have the conversation on the Github, if you have any question &amp; advice, please comment <span aria-label=\"bow\" class=\"emoji emoji-1f647\" role=\"img\" title=\"bow\">:bow:</span></p>",
+        "id": 267363503,
+        "sender_full_name": "northisle",
+        "timestamp": 1641742701
+    }
+]

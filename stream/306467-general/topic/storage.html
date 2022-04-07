@@ -1,0 +1,81 @@
+<html>
+<head><meta charset="utf-8"><title>storage · general · Zulip Chat Archive</title></head>
+<h2>Stream: <a href="http://tisonkun.org/zulip-archive/stream/306467-general/index.html">general</a></h2>
+<h3>Topic: <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/storage.html">storage</a></h3>
+
+<hr>
+
+<base href="https://engula.zulipchat.com/">
+
+<head><link href="http://tisonkun.org/zulip-archive/style.css" rel="stylesheet"></head>
+
+<a name="263087387"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/storage/near/263087387" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/storage.html#263087387">(Nov 30 2021 at 00:33)</a>:</h4>
+<p>Here is the <a href="https://github.com/engula/engula/discussions/41">general storage engine</a> design, which can be divided into three logical parts:</p>
+<ol>
+<li>Engine, consists of core modules like Storage, Journal, Metadata, Background jobs.</li>
+<li>Data API, built on top of Engine, this is the part users build their databases.</li>
+<li>Resource management, or Microunit, provides an abstraction to the underlying resource pool. Engine talks to Microunit to get the resources it needs.</li>
+</ol>
+
+
+
+<a name="263249215"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/storage/near/263249215" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/storage.html#263249215">(Dec 01 2021 at 06:21)</a>:</h4>
+<blockquote>
+<p>Some integrations to implement a file/grpc kernel</p>
+</blockquote>
+<p><span class="user-mention" data-user-id="460843">@Richard</span> is it possible we compose a memstorage with a grpc journal? From <a href="https://github.com/engula/engula/pull/143">#143</a> it seems that a so-called "memkernel" always couples memstorage with memjournal, a "filekernel" will couple filestorage and filejournal, and so does grpckernel. This restriction (coincident) seems unnecessary.</p>
+
+
+
+<a name="263249460"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/storage/near/263249460" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/storage.html#263249460">(Dec 01 2021 at 06:24)</a>:</h4>
+<p>We can still allow dynamic composition by adding a dynamic kernel or something, which integrates arbitrary implementation of journal, storage, etc.</p>
+
+
+
+<a name="263249550"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/storage/near/263249550" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/storage.html#263249550">(Dec 01 2021 at 06:26)</a>:</h4>
+<p>But I think most users don't need that kind of flexibility. So I think some easy-to-understand <code>memory kernel</code> and <code>file kernel</code> are more friendly to them.</p>
+
+
+
+<a name="263250088"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/storage/near/263250088" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/storage.html#263250088">(Dec 01 2021 at 06:36)</a>:</h4>
+<p>OK for deliver an early version. Unless there is optimization point if we know all inners are memory/files/etc., I tend to define one kernel and let deliver an all-memory kernel a pre-define config. Then the usage looks like:</p>
+<div class="codehilite" data-code-language="Rust"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">kernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Kernel</span>::<span class="n">from_config</span><span class="p">(</span><span class="n">KernalConfig</span>::<span class="n">Memory</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">fn</span> <span class="nf">from_config</span><span class="p">(</span><span class="o">..</span><span class="p">.)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">..</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">Kernel</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">stream</span>: <span class="nb">Box</span>::<span class="n">new</span><span class="p">(</span><span class="n">MemStream</span>::<span class="n">new</span><span class="p">()),</span><span class="w"></span>
+<span class="w">    </span><span class="n">bucket</span>: <span class="nb">Box</span>::<span class="n">new</span><span class="p">(</span><span class="n">MemBucket</span>::<span class="n">new</span><span class="p">()),</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>... one optimize point is that if we have a specialization for MemKernel, we don't have to box things. Anyway, users will take to a kernel from its interface and no matter how we construct it.</p>
+
+
+
+<a name="263250185"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/storage/near/263250185" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/storage.html#263250185">(Dec 01 2021 at 06:38)</a>:</h4>
+<p><span class="user-mention" data-user-id="456473">@tison</span> Yes, that's how a dynamic kernel may work, by boxing everything inside it :)</p>
+
+
+
+<a name="263449007"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/storage/near/263449007" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/storage.html#263449007">(Dec 02 2021 at 14:58)</a>:</h4>
+<p>With a more dynamic signature <code>pub type ResultStream&lt;T&gt; = Box&lt;dyn futures::Stream&lt;Item = Result&lt;T&gt;&gt; + Send + Unpin&gt;;</code>, it's much easier to <a href="https://github.com/engula/engula/blob/833ff88352817950c8360d82643e9bfe5ed4b95f/src/journal/src/grpc/stream.rs#L47-L65">implement "either steam" logic</a>!</p>
+<p>And IIUC most languages just box all futures :)</p>
+
+
+
+<a name="263450516"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/storage/near/263450516" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/storage.html#263450516">(Dec 02 2021 at 15:07)</a>:</h4>
+<p>Yes, but Rust wants to give you a zero-cost abstraction, which also brings you a bunch of type bounds!</p>
+
+
+
+<hr><p>Last updated: Apr 07 2022 at 13:11 UTC</p>
+</html>

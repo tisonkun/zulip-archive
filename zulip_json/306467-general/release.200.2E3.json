@@ -1,0 +1,98 @@
+[
+    {
+        "content": "<p>I think release 0.2 is almost settled. We can start planning about release 0.3 :)</p>",
+        "id": 264014971,
+        "sender_full_name": "Richard",
+        "timestamp": 1638890219
+    },
+    {
+        "content": "<p>We can set the release date to Jan 28, 2022, before the spring festival.</p>",
+        "id": 264015590,
+        "sender_full_name": "Richard",
+        "timestamp": 1638890510
+    },
+    {
+        "content": "<p>The primary goal is to make Engula run on k8s, with the corresponding kernel, journal, storage implementations.</p>",
+        "id": 264015867,
+        "sender_full_name": "Richard",
+        "timestamp": 1638890636
+    },
+    {
+        "content": "<p>I think I was too obsessive about the underlying architecture of Engula, instead of thinking about how users can use Engula to do anything useful. The result is that Engula is very unuseful except for demonstrating some fancy ideas so far. Another problem is that, without a realistic use case, it's hard to design the underlying infrastructure. Because almost everything depends on the upper-level applications. Saying something can do anything accordingly is not very constructive.<br>\nSo instead of spending more time working on the infrastructure, I think we should try to deliver something more useful for potential users. Specifically, users here mean those who may use a specific Engula engine to build something. Hence, I suggest that we should build a decent, flagship storage engine first, and optimize the underlying components along with the engine as we get more context from it.</p>",
+        "id": 264837803,
+        "sender_full_name": "Richard",
+        "timestamp": 1639478220
+    },
+    {
+        "content": "<p>And about the flagship engine, I am glad if someone can bring me interesting ideas. Otherwise, I will consider bringing some ideas described <a href=\"https://github.com/engula/engula/discussions/55\">here</a> before.</p>",
+        "id": 264838632,
+        "sender_full_name": "Richard",
+        "timestamp": 1639478691
+    },
+    {
+        "content": "<p>Coincidentally.  I think to construct a distributed rocksdb should be enough to verify the ability of Engula?</p>",
+        "id": 264841219,
+        "sender_full_name": "p4tr1ck",
+        "timestamp": 1639480125
+    },
+    {
+        "content": "<p>The reason is that it is simple enough, but can cover all cases without introducing unnecessary complexity.</p>",
+        "id": 264841336,
+        "sender_full_name": "p4tr1ck",
+        "timestamp": 1639480198
+    },
+    {
+        "content": "<p>BTW, should we open a discussion to formally discuss this topic so that others can index.</p>",
+        "id": 264841485,
+        "sender_full_name": "p4tr1ck",
+        "timestamp": 1639480271
+    },
+    {
+        "content": "<p>Yeah, I am going to open a discussion for this. But I am still thinking about some ideas. So maybe later.</p>",
+        "id": 264841806,
+        "sender_full_name": "Richard",
+        "timestamp": 1639480446
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span> <a href=\"#narrow/stream/306467-general/topic/release.200.2E3/near/264837803\">said</a>:</p>\n<blockquote>\n<p>I think I was too obsessive about the underlying architecture of Engula, instead of ...</p>\n</blockquote>\n<p>A minimal viable product will be exciting! Actually, when it comes to deployment topics, the first question is \"what to deploy\". I contacted with several k8s experts. While they're experienced on optimizing an existing deployment, they might be a unfamilar with defining the storage engine model :P</p>",
+        "id": 264843056,
+        "sender_full_name": "tison",
+        "timestamp": 1639481232
+    },
+    {
+        "content": "<p>Replicating a rocksdb or redis is a actually very reasonable choice. The only problem is that it doesn't seem to satisfy my own requirements. Which, in turn, doesn't make me passionate about it :)</p>",
+        "id": 264843501,
+        "sender_full_name": "Richard",
+        "timestamp": 1639481478
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"456473\">tison</span> <a href=\"#narrow/stream/306467-general/topic/release.200.2E3/near/264843056\">said</a>:</p>\n<blockquote>\n<p>A minimal viable product will be exciting! Actually, when it comes to deployment topics, the first question is \"what to deploy\". I contacted with several k8s experts. While they're experienced on optimizing an existing deployment, they might be a unfamilar with defining the storage engine model :P</p>\n</blockquote>\n<p>Not sure if I get it right. Do you mean that they have no idea what Engula needs to deploy? Or they don't know what Engula is for?</p>",
+        "id": 264843787,
+        "sender_full_name": "Richard",
+        "timestamp": 1639481657
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"462456\">p4tr1ck</span> <a href=\"#narrow/stream/306467-general/topic/release.200.2E3/near/264841219\">said</a>:</p>\n<blockquote>\n<p>Coincidentally.  I think to construct a distributed rocksdb should be enough to verify the ability of Engula?</p>\n</blockquote>\n<p>+1,  I had a question in my mind long time, what distance between \"rocksdb engine\" and \"other nosql engine like redis/or table\"? or \"does table api/ redis api great impact on engine design\", if not maybe we'd better build solid distribute rocksdb first~? ...or we may try prototype some engine to help engine design.... but I have no experience about this judge, but only feel solid rocksdb is important <span aria-label=\"sweat smile\" class=\"emoji emoji-1f605\" role=\"img\" title=\"sweat smile\">:sweat_smile:</span></p>",
+        "id": 264845072,
+        "sender_full_name": "zojw",
+        "timestamp": 1639482422
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"460845\">@zojw</span> <span class=\"user-mention\" data-user-id=\"462456\">@p4tr1ck</span> Thanks for your feedback! I really appreciate it because sometimes I may take things for granted without other inputs. I will think more about it then.</p>",
+        "id": 264846402,
+        "sender_full_name": "Richard",
+        "timestamp": 1639483138
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span> <a href=\"#narrow/stream/306467-general/topic/release.200.2E3/near/264843787\">said</a>:</p>\n<blockquote>\n<p>Not sure if I get it right. Do you mean that they have no idea what Engula needs to deploy? Or they don't know what Engula is for?</p>\n</blockquote>\n<p>The latter. Before we build a useful engine, one can hardly understand components' responsibility and how they should be deployed optimally. Remember how we changed concepts multiple times, it's hard to discuss the deployment model before we build the storage engine model.</p>\n<p>An expert can say, \"a cluster coordinator ...\", but it should be mapped in a Kernel server; otherwise it's too abstract to implement. In another word, they know there should be several roles in a deployment, but it's meaningless before binding to the storage engine model.</p>",
+        "id": 264851020,
+        "sender_full_name": "tison",
+        "timestamp": 1639485668
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460845\">zojw</span> <a href=\"#narrow/stream/306467-general/topic/release.200.2E3/near/264845072\">said</a>:</p>\n<blockquote>\n<p>+1,  I had a question in my mind long time, what distance between \"rocksdb engine\" and \"other nosql engine like redis/or table\"? or \"does table api/ redis api great impact on engine design\", if not maybe we'd better build solid distribute rocksdb first~? ...or we may try prototype some engine to help engine design.... but I have no experience about this judge, but only feel solid rocksdb is important <span aria-label=\"sweat smile\" class=\"emoji emoji-1f605\" role=\"img\" title=\"sweat smile\">:sweat_smile:</span></p>\n</blockquote>\n<p>API does affect engine design, in my opinion. If the engine layer can provide mechanism, many functions will be simpler and more efficient to implementation. A convincing example is the User Timestamp of rocksdb.</p>\n<p>I very much agree with @tison ’s statement: \"it's meaningless before binding to the storage engine model\". From this perspective, I prefer to choose a distributed engine that can quickly implement but provide sufficient verification scenarios. This is why I think a distributed rocksdb is suitable.</p>",
+        "id": 264958669,
+        "sender_full_name": "p4tr1ck",
+        "timestamp": 1639536386
+    }
+]

@@ -1,0 +1,109 @@
+<html>
+<head><meta charset="utf-8"><title>✔ common crates · general · Zulip Chat Archive</title></head>
+<h2>Stream: <a href="http://tisonkun.org/zulip-archive/stream/306467-general/index.html">general</a></h2>
+<h3>Topic: <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html">✔ common crates</a></h3>
+
+<hr>
+
+<base href="https://engula.zulipchat.com/">
+
+<head><link href="http://tisonkun.org/zulip-archive/style.css" rel="stylesheet"></head>
+
+<a name="263702299"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/263702299" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#263702299">(Dec 04 2021 at 12:09)</a>:</h4>
+<p><span class="user-mention" data-user-id="460843">@Richard</span> I'd like to continue <a href="https://github.com/engula/engula/pull/155#discussion_r762419077">the discussion about "common" crate</a> here apart from the mainstream fo PR#155. It's somehow a random topic.</p>
+<p>I agree that bad management ruins everything no matter how you name it, but names influence has its impact also. "core" and even "common" can deliver preference on few dependencies ("core" =&gt; Flink, Calcite, "common" =&gt; Apache Commons, Pulsar). However, "util" is never a good choice. "util" always means random functions you need, just like "misc".</p>
+
+
+
+<a name="263702741"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/263702741" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#263702741">(Dec 04 2021 at 12:15)</a>:</h4>
+<p>What do you mean "preference on few dependencies"?</p>
+
+
+
+<a name="263702824"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/263702824" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#263702824">(Dec 04 2021 at 12:17)</a>:</h4>
+<p>I can accept that "common" may be a better choice than "util", since we are trying to put things that are common in multiple crates there.</p>
+
+
+
+<a name="263702968"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/263702968" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#263702968">(Dec 04 2021 at 12:19)</a>:</h4>
+<p>"core", on the other hand, is not acceptable. I don't know how other project use it. But I don't see how something like <code>ResultStream</code> can be the core of Engula.</p>
+
+
+
+<a name="263703035"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/263703035" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#263703035">(Dec 04 2021 at 12:20)</a>:</h4>
+<p>A "common" crate  which means a basic crate is always near to the root of the dependency graph, so any contributor and reviewer share a common understanding that it cannot pollute heavy dependencies. For example, you won't add "axum" dependency in such a "common" crate, which is not strange in a "util" crate.</p>
+
+
+
+<a name="263703055"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/263703055" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#263703055">(Dec 04 2021 at 12:21)</a>:</h4>
+<p>I'm OK with "commons" with the understanding of Apache Commons.</p>
+
+
+
+<a name="263703424"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/263703424" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#263703424">(Dec 04 2021 at 12:28)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="456473">tison</span> <a href="#narrow/stream/306467-general/topic/common.20crates/near/263703035">said</a>:</p>
+<blockquote>
+<p>A "common" crate  which means a basic crate is always near to the root of the dependency graph, so any contributor and reviewer share a common understanding that it cannot pollute heavy dependencies.</p>
+</blockquote>
+<p>Agree. But I think we need to talk more about "heavy dependencies".</p>
+
+
+
+<a name="263703642"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/263703642" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#263703642">(Dec 04 2021 at 12:34)</a>:</h4>
+<p>Just as few as possible. For example "axum" as mentioned above; for example "tokio". We can have multiple common crates if we'd really want to wrap something common based on "tokio" or "clap" and name them as "engula-network", "engula-cli", but not a "god" crate which ruins modularization which enables users (including internal high-level crates) to pull fewer dependency - especially engula is assumed to be used as a library.</p>
+
+
+
+<a name="263704318"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/263704318" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#263704318">(Dec 04 2021 at 12:44)</a>:</h4>
+<p>So now this is a more clear goal, to avoid unnecessary dependencies.</p>
+
+
+
+<a name="263704419"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/263704419" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#263704419">(Dec 04 2021 at 12:46)</a>:</h4>
+<p>I am still thinking about the difference between having a <code>engula-util</code> which contains a <code>network</code>/<code>cli</code> and a standalone <code>engula-network</code> and <code>engula-cli</code>.</p>
+
+
+
+<a name="263704852"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/263704852" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#263704852">(Dec 04 2021 at 12:51)</a>:</h4>
+<p>Putting something in a <code>util</code> usually implies that the thing is actually not specific to the project, it is just some utilities that can be potentially used by other projects too.</p>
+
+
+
+<a name="263705007"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/263705007" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#263705007">(Dec 04 2021 at 12:53)</a>:</h4>
+<p>You can keep in mind that heavy dependencies near the root of the dependency graph are harmful, and let's review this topic when real-world bad cases occur. I have a strong feeling to avoid top-level <code>util</code> and see many bad cases somewhere else. You can check out <a href="https://twitter.com/tison1096/status/1417750125196189698">this tweet</a> about existing complaints about "util".</p>
+<div class="inline-preview-twitter"><div class="twitter-tweet"><a href="https://twitter.com/tison1096/status/1417750125196189698"><img class="twitter-avatar" src="https://uploads.zulipusercontent.net/65cd3ebcf841cc420f910e1564d9cfe6c7f757da/68747470733a2f2f7062732e7477696d672e636f6d2f70726f66696c655f696d616765732f313037313430323432303330313737383934352f52716b5a45566d2d5f6e6f726d616c2e6a7067"></a><p>util, common 都是非常不好的名字，很容易变成垃圾场。core 也差不多，但是因为 core 大部分时候会控制依赖复杂度，这种情况下就还行。 <a href="https://t.co/EoYjCa11M0">https://twitter.com/W4anD0eR96/status/1417750125196189698/photo/1</a></p><span>- tison (@tison1096)</span><div class="twitter-image"><a href="https://t.co/EoYjCa11M0"><img src="https://uploads.zulipusercontent.net/9a6a529f212061aab285f15e3c0466116b8b7f80/68747470733a2f2f7062732e7477696d672e636f6d2f6d656469612f45367a63475a7455594149546d4e732e6a70673a7468756d62"></a></div></div></div>
+
+
+
+<a name="263705922"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/263705922" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#263705922">(Dec 04 2021 at 13:07)</a>:</h4>
+<p>To be honest, those complaints are too casual and mean very little to me. But let's agree to disagree and get back to the situation we actually meet here. I think we can both agree that something like <code>ResultStream</code> can be placed in a "common" crate.</p>
+
+
+
+<a name="263706278"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/263706278" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#263706278">(Dec 04 2021 at 13:12)</a>:</h4>
+<p>Yes if it means a concrete type of general dynamic future streams. If it means a specific type of what when you read events from a journal stream returns, the root is <code>engula_journal::ResultStream</code>. I've commented it at <a href="https://github.com/engula/engula/pull/155#discussion_r762423250">here</a>.</p>
+
+
+
+<a name="264020934"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/%E2%9C%94%20common%20crates/near/264020934" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Notification Bot <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/.E2.9C.94.20common.20crates.html#264020934">(Dec 07 2021 at 15:57)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="456473">tison</span> has marked this topic as resolved.</p>
+
+
+
+<hr><p>Last updated: Apr 07 2022 at 13:11 UTC</p>
+</html>

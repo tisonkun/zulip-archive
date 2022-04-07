@@ -1,0 +1,14 @@
+[
+    {
+        "content": "<p>Hi, I have open a discussion about how to achieve a leader based journal: <a href=\"https://github.com/engula/engula/discussions/251\">https://github.com/engula/engula/discussions/251</a>. You can help give some design choices and suggestions. Thinks!</p>",
+        "id": 266906706,
+        "sender_full_name": "p4tr1ck",
+        "timestamp": 1641369446
+    },
+    {
+        "content": "<p>Hi, I draft the API of <code>LeaderBasedJournal</code> and post it in discussion: <a href=\"https://github.com/engula/engula/discussions/260\">https://github.com/engula/engula/discussions/260</a>. Welcome to discuss.</p>",
+        "id": 267049790,
+        "sender_full_name": "p4tr1ck",
+        "timestamp": 1641467955
+    }
+]

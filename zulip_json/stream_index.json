@@ -1,0 +1,73 @@
+{
+    "streams": {
+        "general": {
+            "id": 306467,
+            "latest_id": 274344332,
+            "topic_data": {
+                "deployment": {
+                    "latest_date": 1639208898,
+                    "size": 4
+                },
+                "journal": {
+                    "latest_date": 1641467955,
+                    "size": 2
+                },
+                "luna-engine": {
+                    "latest_date": 1640873936,
+                    "size": 9
+                },
+                "new streams": {
+                    "latest_date": 1640669942,
+                    "size": 1
+                },
+                "random": {
+                    "latest_date": 1646041240,
+                    "size": 84
+                },
+                "release 0.2": {
+                    "latest_date": 1639742954,
+                    "size": 48
+                },
+                "release 0.3": {
+                    "latest_date": 1639536386,
+                    "size": 16
+                },
+                "storage": {
+                    "latest_date": 1638457649,
+                    "size": 8
+                },
+                "✔ common crates": {
+                    "latest_date": 1638892626,
+                    "size": 15
+                },
+                "✔ deployment": {
+                    "latest_date": 1646015118,
+                    "size": 1
+                },
+                "✔ journal": {
+                    "latest_date": 1646622106,
+                    "size": 1
+                },
+                "✔ release 0.2": {
+                    "latest_date": 1646015104,
+                    "size": 1
+                },
+                "✔ website": {
+                    "latest_date": 1646015098,
+                    "size": 1
+                }
+            }
+        },
+        "website": {
+            "id": 310983,
+            "latest_id": 267363503,
+            "topic_data": {
+                "random": {
+                    "latest_date": 1641742701,
+                    "size": 14
+                }
+            }
+        }
+    },
+    "time": 1649337104.1410234
+}

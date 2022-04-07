@@ -1,0 +1,290 @@
+[
+    {
+        "content": "<p>We have developed a lot of designs, concepts, and abstractions recently. We apply the principle of public designs and discussions (engula has no internal documents or discussion channels at all), which means that we talk about a lot of early ideas that are subject to change. While these ideas give more opportunities for the community to involve, they also confuse the community if they change rapidly. So in order to converge the work we have done so far, I suggest that we cut a simpler version 0.2 with the following features at the end of Dec 2021:</p>\n<ul>\n<li>A design document that explains existing concepts</li>\n<li>A hash engine that can use different kinds of kernels</li>\n<li>A kernel, journal, and storage abstraction</li>\n<li>A memory kernel that integrates the memory journal and memory storage</li>\n<li>A file kernel that integrates the file journal and file storage</li>\n<li>A grpc kernel that integrates the grpc journal and grpc storage</li>\n<li>A blog post that announces the v0.2 release, demonstrates the hash engine and explains some future plans.</li>\n</ul>\n<p>Specifically, I suggest cutting microunit off at v0.2 since we don't have a clear design about it for now. Then we can focus on resource management and deployment in v0.3.</p>",
+        "id": 263246856,
+        "sender_full_name": "Richard",
+        "timestamp": 1638337031
+    },
+    {
+        "content": "<p><a href=\"https://github.com/engula/engula/pull/143\">This PR</a> demonstrates some interactions between engine and kernel.</p>",
+        "id": 263247011,
+        "sender_full_name": "Richard",
+        "timestamp": 1638337198
+    },
+    {
+        "content": "<blockquote>\n<p>I suggest cutting microunit off at v0.2</p>\n</blockquote>\n<p>Today I consider this topic also. I agree with you that we don't have to deliver multiple concepts about deployment before we have a clear design and so does microunit. However, we should still deliver a basic usable executable in v0.2 so that early users can explore the software and inspire ideas.</p>",
+        "id": 263248220,
+        "sender_full_name": "tison",
+        "timestamp": 1638338495
+    },
+    {
+        "content": "<p>Let's group discussions about releasing v0.2.</p>",
+        "id": 263248309,
+        "sender_full_name": "tison",
+        "timestamp": 1638338595
+    },
+    {
+        "content": "<p>Users can use the memory/file kernel as a library. For the grpc kernel, we need to provide a binary to start a kernel service, then users can start an engine that connects to the kernel service.</p>",
+        "id": 263248477,
+        "sender_full_name": "Richard",
+        "timestamp": 1638338825
+    },
+    {
+        "content": "<p>I'm writing a personal blog about the current state of Engula and plan to list something as you posted above.</p>\n<ul>\n<li>We've almost finished basic implementations for storage/journal that supports the engine.</li>\n<li>\n<p>The remaining works for cutting a release are:</p>\n<ol>\n<li>Complete <code>engine</code> and thus provide a basic usable API.</li>\n<li>Deliver a basic executable that one can start a standalone service.</li>\n</ol>\n</li>\n</ul>",
+        "id": 263248585,
+        "sender_full_name": "tison",
+        "timestamp": 1638338978
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span> <a href=\"#narrow/stream/306467-general/topic/release.20v0.2E2/near/263248477\">said</a>:</p>\n<blockquote>\n<p>Users can use the memory/file kernel as a library. For the grpc kernel, we need to provide a binary to start a kernel service, then users can start an engine that connects to the kernel service.</p>\n</blockquote>\n<p>For as a service usage, we can deliver some examples. But IIRC in a <a href=\"https://github.com/engula/engula/pull/136#issuecomment-981244218\">previous discussion</a> we reached a consensus that:</p>\n<blockquote>\n<p>LocalKernel means a standalone Kernel that allocates all units at the same node. It can instantiate any journal/storage instance. The current implementation in this PR is a stub that shadows this composition but restricts to mem implementation. Other candidates are KernelService only which talks to microunit for requesting resources to deploy units.</p>\n</blockquote>\n<p>What do you mean by a \"memory/file kernel\"?</p>",
+        "id": 263248694,
+        "sender_full_name": "tison",
+        "timestamp": 1638339117
+    },
+    {
+        "content": "<p>I think we still miss the following things:</p>\n<ul>\n<li>A local file journal described <a href=\"https://github.com/engula/engula/issues/128\">here</a></li>\n<li>Some integrations to implement a file/grpc kernel</li>\n<li>A blog post and some future plans, of course</li>\n</ul>",
+        "id": 263248840,
+        "sender_full_name": "Richard",
+        "timestamp": 1638339260
+    },
+    {
+        "content": "<p>From <a href=\"https://github.com/engula/engula/pull/143\">#143</a> it seems that:</p>\n<ul>\n<li><code>engine</code> supersedes previous <code>API</code>;</li>\n<li><code>kernel</code> supersedes previous <code>engine</code>, which is a facade of storage/journal/background.</li>\n</ul>\n<p>And the previous <code>kernel</code> as a deployment concept dismiss. No concept cares about how to deploy now.</p>",
+        "id": 263248962,
+        "sender_full_name": "tison",
+        "timestamp": 1638339438
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"456473\">tison</span> <a href=\"#narrow/stream/306467-general/topic/release.20v0.2E2/near/263248694\">said</a>:</p>\n<blockquote>\n<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span> <a href=\"#narrow/stream/306467-general/topic/release.20v0.2E2/near/263248477\">said</a>:<br>\nWhat do you mean by a \"memory/file kernel\"?</p>\n</blockquote>\n<p>Let's drop the unit things for now and consider how things work from the perspective of users now. So the topmost concept is <code>engine</code>. We may provide different kinds of engines, for example, <code>map</code>, <code>hash</code>, etc. An engine can use a kernel to persist its data and the same engine can be plugged with different kinds of kernels. For example, a memory kernel, which stores everything in memory; a file kernel, which stores everything in files. So a kernel implementation is an integration (or solution) of different kinds of journal, storage, etc.</p>",
+        "id": 263249242,
+        "sender_full_name": "Richard",
+        "timestamp": 1638339708
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"456473\">tison</span> <a href=\"#narrow/stream/306467-general/topic/release.20v0.2E2/near/263248962\">said</a>:</p>\n<blockquote>\n<p>And the previous <code>kernel</code> as a deployment concept dismiss. No concept cares about how to deploy now.</p>\n</blockquote>\n<p>We can still use microunit for deployment and resource management.</p>",
+        "id": 263249715,
+        "sender_full_name": "Richard",
+        "timestamp": 1638340200
+    },
+    {
+        "content": "<p>Sounds good. Though we don't deliver microunit at 0.2, we don't separate deployment responsibility to both <code>Kernel</code> &amp; microunit anymore. A kernel will acts as a dispatcher/facade of the whole storage engine. And all effective deployment/resourcemanagement actions is applied by microunit.</p>",
+        "id": 263250462,
+        "sender_full_name": "tison",
+        "timestamp": 1638341080
+    },
+    {
+        "content": "<p>Yes, I think we are on the same page now.a</p>",
+        "id": 263250645,
+        "sender_full_name": "Richard",
+        "timestamp": 1638341318
+    },
+    {
+        "content": "<p>I am going to update the v0.2 roadmap and stuff, and then see how we work towards the release.</p>",
+        "id": 263250674,
+        "sender_full_name": "Richard",
+        "timestamp": 1638341364
+    },
+    {
+        "content": "<p>Hmm, maybe we can let <a href=\"https://github.com/tokio-rs/mini-redis\">mini-redis</a> run on our hash engine. I think the job should not be hard since <code>mini-redis</code> stores everything in a <a href=\"https://github.com/tokio-rs/mini-redis/blob/master/src/db.rs#L64\">HashMap</a>. It will be an interesting way to demonstrate the usage of our hash engine in v0.2.</p>",
+        "id": 263436310,
+        "sender_full_name": "Richard",
+        "timestamp": 1638451620
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span> <a href=\"#narrow/stream/306467-general/topic/release.20v0.2E2/near/263436310\">said</a>:</p>\n<blockquote>\n<p>Hmm, maybe we can let <a href=\"https://github.com/tokio-rs/mini-redis\">mini-redis</a> run on our hash engine. I think the job should not be hard since <code>mini-redis</code> stores everything in a <a href=\"https://github.com/tokio-rs/mini-redis/blob/master/src/db.rs#L64\">HashMap</a>. It will be an interesting way to demonstrate the usage of our hash engine in v0.2.</p>\n</blockquote>\n<p>I'm thinking of running Redis protocal also, since it has fruitful collection APIs, which is Engula wants to deliver to users.</p>",
+        "id": 263449212,
+        "sender_full_name": "tison",
+        "timestamp": 1638457188
+    },
+    {
+        "content": "<p>We can consider working on that once we get <a href=\"https://github.com/engula/engula/pull/143\">https://github.com/engula/engula/pull/143</a> landed :)</p>",
+        "id": 263451533,
+        "sender_full_name": "Richard",
+        "timestamp": 1638458031
+    },
+    {
+        "content": "<p>I think we can set the earliest release date to Dec 17.</p>",
+        "id": 263970649,
+        "sender_full_name": "Richard",
+        "timestamp": 1638865792
+    },
+    {
+        "content": "<p>I commented on the <a href=\"https://github.com/engula/engula/issues/144\">release issue</a> about tasks for a release. Basically, they're:</p>\n<ol>\n<li>Push a new tag v0.2.0.</li>\n<li>Create a source release from the tag, and also an announcement about the release.</li>\n<li>Publish the crates on <a href=\"http://crates.io\">crates.io</a>.</li>\n</ol>\n<p>Apart from the release procedure, documents and blogs about how to play with v0.2.0 are admirable.</p>",
+        "id": 263972382,
+        "sender_full_name": "tison",
+        "timestamp": 1638867023
+    },
+    {
+        "content": "<p>I think we can add a \"Docs\" section to the homepage for user documents <span aria-label=\"thinking\" class=\"emoji emoji-1f914\" role=\"img\" title=\"thinking\">:thinking:</span></p>",
+        "id": 263973406,
+        "sender_full_name": "Richard",
+        "timestamp": 1638867688
+    },
+    {
+        "content": "<p>Another option is to use Github Wiki</p>",
+        "id": 263973508,
+        "sender_full_name": "Richard",
+        "timestamp": 1638867750
+    },
+    {
+        "content": "<p>github wiki seems unfriendly to review &amp; modify docs by multiple peoples - -?</p>",
+        "id": 263974269,
+        "sender_full_name": "zojw",
+        "timestamp": 1638868219
+    },
+    {
+        "content": "<p>If choose from either of these, I vote for a \"Docs\"  section on the homepage. GitHub Wiki is somehow a premature feature and out of maintenance. The biggest shortcomings are:</p>\n<ol>\n<li>You cannot review and merge, but only grant edit permission.</li>\n<li>Pages layout is weird and can be hardly handled by code (you can only edit by the Web UI).</li>\n</ol>",
+        "id": 263974305,
+        "sender_full_name": "tison",
+        "timestamp": 1638868247
+    },
+    {
+        "content": "<p>Hmm, no wonder I didn't see many people using Github Wiki.</p>",
+        "id": 263974978,
+        "sender_full_name": "Richard",
+        "timestamp": 1638868677
+    },
+    {
+        "content": "<p>Or maybe we just need to write some good Rust crates docs. They will be published to <a href=\"http://docs.rs\">docs.rs</a>.</p>",
+        "id": 263975625,
+        "sender_full_name": "Richard",
+        "timestamp": 1638869052
+    },
+    {
+        "content": "<p>I realized that I was confused about Engula's users before. I used to think that users can combine engines and kernels in arbitrary ways as they want. That's why the example code <a href=\"https://github.com/engula/engula/blob/main/examples/hash_engine.rs\">here</a> requires users to create a kernel and an engine separately. However, I think I was wrong. <strong>Engula's users should be those who use a specific engine to build their databases. They don't need to know about the kernel/journal/storage concepts at all.</strong> All they need to know is how to open a specific engine and use it. For example, if they want a memory hash engine, they simply open a memory hash engine. Or if they want a grpc hash engine, they deploy a grpc hash engine server and then open a hash engine with the server address.</p>\n<p><strong>So it is the engine that makes the final decision about how modules should compose, not the kernel.</strong> In this case, we don't really need to make a general kernel that can serve all kinds of engines. We can let each engine build its own specific kernel. It also solves the background jobs problem <a href=\"https://github.com/engula/engula/issues/66#issuecomment-987871907\">here</a> because an engine can somehow embed its background job handler to its kernel.</p>",
+        "id": 264143701,
+        "sender_full_name": "Richard",
+        "timestamp": 1638963884
+    },
+    {
+        "content": "<p>Of course, for those who want to build their engines, they can do whatever they want and we simply offer the capabilities to them. The philosophy of <em>making the easy things easy, and the hard things possible</em> applies here.</p>",
+        "id": 264144679,
+        "sender_full_name": "Richard",
+        "timestamp": 1638964642
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"460843\">@Richard</span> <br>\n<span aria-label=\"joy\" class=\"emoji emoji-1f602\" role=\"img\" title=\"joy\">:joy:</span>  So is it still needs to do that provide a binary to start kernel server? Shall I add engine server instead of kernel server?</p>",
+        "id": 264159760,
+        "sender_full_name": "p4tr1ck",
+        "timestamp": 1638972593
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"462456\">@p4tr1ck</span> I think you can still finish the job as we discussed before. I may re-organize some code later, though.</p>",
+        "id": 264160300,
+        "sender_full_name": "Richard",
+        "timestamp": 1638972800
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"462456\">@p4tr1ck</span> have you been working on the binary thing? If not, you can leave that to me, since I am thinking about how to re-organize things.</p>",
+        "id": 264261423,
+        "sender_full_name": "Richard",
+        "timestamp": 1639030594
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"460843\">@Richard</span>  Yes, I have already submitted a PR.</p>",
+        "id": 264262999,
+        "sender_full_name": "p4tr1ck",
+        "timestamp": 1639032686
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"462456\">p4tr1ck</span> <a href=\"#narrow/stream/306467-general/topic/release.200.2E2/near/264262999\">said</a>:</p>\n<blockquote>\n<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span>  Yes, I have already submitted a PR.</p>\n</blockquote>\n<p>All right, then. Let's work with your PR first :)</p>",
+        "id": 264263267,
+        "sender_full_name": "Richard",
+        "timestamp": 1639033001
+    },
+    {
+        "content": "<p>Hi, all. I have post my thoughts on how do user setup an engine here: <a href=\"https://github.com/engula/engula/discussions/182#discussioncomment-1783820\">https://github.com/engula/engula/discussions/182#discussioncomment-1783820</a>, welcome to discuss.</p>",
+        "id": 264409197,
+        "sender_full_name": "p4tr1ck",
+        "timestamp": 1639119404
+    },
+    {
+        "content": "<p>Hi, I have published the engula 0.2 crate! You can help to verify <a href=\"https://github.com/engula/engula.github.io/blob/958e7082205723801a5c7f5769e8b1b8efcb648f/docs/posts/tutorial-0.2.md\">the tutorial</a> now <span aria-label=\"smiley\" class=\"emoji emoji-1f603\" role=\"img\" title=\"smiley\">:smiley:</span></p>",
+        "id": 265254807,
+        "sender_full_name": "Richard",
+        "timestamp": 1639717715
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"456473\">@tison</span> Seems I can't do wildcard mentions, can you give me some permissions?</p>",
+        "id": 265254842,
+        "sender_full_name": "Richard",
+        "timestamp": 1639717766
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"460843\">@Richard</span> please try again.</p>",
+        "id": 265254989,
+        "sender_full_name": "tison",
+        "timestamp": 1639717933
+    },
+    {
+        "content": "<p>Hi, <span class=\"user-mention\" data-user-id=\"*\">@everyone</span>, I have published the engula 0.2 crate! You can help to verify <a href=\"https://github.com/engula/engula.github.io/blob/958e7082205723801a5c7f5769e8b1b8efcb648f/docs/posts/tutorial-0.2.md\">the tutorial</a> now <span aria-label=\"smiley\" class=\"emoji emoji-1f603\" role=\"img\" title=\"smiley\">:smiley:</span></p>",
+        "id": 265255024,
+        "sender_full_name": "Richard",
+        "timestamp": 1639717998
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"456473\">@tison</span> Can you help to tweet a release message?</p>",
+        "id": 265257705,
+        "sender_full_name": "Richard",
+        "timestamp": 1639721381
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span> <a href=\"#narrow/stream/306467-general/topic/release.200.2E2/near/265257705\">said</a>:</p>\n<blockquote>\n<p><span class=\"user-mention silent\" data-user-id=\"456473\">tison</span> Can you help to tweet a release message?</p>\n</blockquote>\n<p>Of course I'm writing it :P</p>",
+        "id": 265261164,
+        "sender_full_name": "tison",
+        "timestamp": 1639725501
+    },
+    {
+        "content": "<p>BTW, I also posted to Reddit <a href=\"https://www.reddit.com/r/rust/comments/riba4x/announce_engula_02/\">here</a>.</p>",
+        "id": 265261378,
+        "sender_full_name": "Richard",
+        "timestamp": 1639725786
+    },
+    {
+        "content": "<ul>\n<li><a href=\"https://twitter.com/engulaio/status/1471743304433692674\">https://twitter.com/engulaio/status/1471743304433692674</a></li>\n<li><a href=\"https://twitter.com/engulaio/status/1471744048574595073\">https://twitter.com/engulaio/status/1471744048574595073</a></li>\n</ul>\n<p>Here they are. But I notice that the page is lack of metadata so that it cannot be rendered. Let me create an issue for it.</p>\n<div class=\"inline-preview-twitter\"><div class=\"twitter-tweet\"><a href=\"https://twitter.com/engulaio/status/1471743304433692674\"><img class=\"twitter-avatar\" src=\"https://uploads.zulipusercontent.net/915287824c38afa7e764af2591e794a14c2a51ad/68747470733a2f2f7062732e7477696d672e636f6d2f70726f66696c655f696d616765732f313435383637373630383933383330373538382f51737a79326f6b505f6e6f726d616c2e706e67\"></a><p>We’re pleased to announce the release of Engula 0.2, the first official release!🥳<span aria-label=\"rocket\" class=\"emoji emoji-1f680\" role=\"img\" title=\"rocket\">:rocket:</span>\n\nEngula 0.2 comes with a hash engine that supports simple key-value operations, and three kernels that persist data in different places.\n<a href=\"https://t.co/5x7PW92Ilg\">https://engula.io/posts/release-0.2/</a></p><span>- Engula (@engulaio)</span></div></div><div class=\"inline-preview-twitter\"><div class=\"twitter-tweet\"><a href=\"https://twitter.com/engulaio/status/1471744048574595073\"><img class=\"twitter-avatar\" src=\"https://uploads.zulipusercontent.net/915287824c38afa7e764af2591e794a14c2a51ad/68747470733a2f2f7062732e7477696d672e636f6d2f70726f66696c655f696d616765732f313435383637373630383933383330373538382f51737a79326f6b505f6e6f726d616c2e706e67\"></a><p>We’ve also prepared a tutorial to show you how to play with an #Engula engine.\n<a href=\"https://t.co/xxMLlne83D\">https://engula.io/posts/tutorial-0.2/</a></p><span>- Engula (@engulaio)</span></div></div>",
+        "id": 265261723,
+        "sender_full_name": "tison",
+        "timestamp": 1639726181
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span> <a href=\"#narrow/stream/306467-general/topic/release.200.2E2/near/265261378\">said</a>:</p>\n<blockquote>\n<p>BTW, I also posted to Reddit <a href=\"https://www.reddit.com/r/rust/comments/riba4x/announce_engula_02/\">here</a>.</p>\n</blockquote>\n<p>Nice! I think a post to <a href=\"https://news.ycombinator.com/\">Hacker News</a> would be also great.</p>",
+        "id": 265261811,
+        "sender_full_name": "tison",
+        "timestamp": 1639726243
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"456473\">tison</span> <a href=\"#narrow/stream/306467-general/topic/release.200.2E2/near/265261811\">said</a>:</p>\n<blockquote>\n<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span> <a href=\"#narrow/stream/306467-general/topic/release.200.2E2/near/265261378\">said</a>:</p>\n<blockquote>\n<p>BTW, I also posted to Reddit <a href=\"https://www.reddit.com/r/rust/comments/riba4x/announce_engula_02/\">here</a>.</p>\n</blockquote>\n<p>Nice! I think a post to <a href=\"https://news.ycombinator.com/\">Hacker News</a> would be also great.</p>\n</blockquote>\n<p>I'll do it so let me take the lock :)</p>",
+        "id": 265262547,
+        "sender_full_name": "tison",
+        "timestamp": 1639727017
+    },
+    {
+        "content": "<p><a href=\"https://news.ycombinator.com/item?id=29589129\">Here</a> it is.</p>",
+        "id": 265263034,
+        "sender_full_name": "tison",
+        "timestamp": 1639727402
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"456473\">tison</span> <a href=\"#narrow/stream/306467-general/topic/release.200.2E2/near/265263034\">said</a>:</p>\n<blockquote>\n<p><a href=\"https://news.ycombinator.com/item?id=29589129\">Here</a> it is.</p>\n</blockquote>\n<p>Oh, thanks, but the link doesn't seem work?</p>",
+        "id": 265264028,
+        "sender_full_name": "Richard",
+        "timestamp": 1639728162
+    },
+    {
+        "content": "<p><span aria-label=\"tada\" class=\"emoji emoji-1f389\" role=\"img\" title=\"tada\">:tada:</span></p>",
+        "id": 265274895,
+        "sender_full_name": "min.wu",
+        "timestamp": 1639735151
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"460843\">@Richard</span> Interesting. I sign up the account today and I can view the post when login. If you have an account, you can repost the news🤪</p>",
+        "id": 265276691,
+        "sender_full_name": "tison",
+        "timestamp": 1639735957
+    },
+    {
+        "content": "<p>Here is the <a href=\"https://news.ycombinator.com/item?id=29591088\">HN link</a>.</p>",
+        "id": 265287585,
+        "sender_full_name": "Richard",
+        "timestamp": 1639742954
+    }
+]

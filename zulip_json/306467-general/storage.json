@@ -1,0 +1,50 @@
+[
+    {
+        "content": "<p>Here is the <a href=\"https://github.com/engula/engula/discussions/41\">general storage engine</a> design, which can be divided into three logical parts:</p>\n<ol>\n<li>Engine, consists of core modules like Storage, Journal, Metadata, Background jobs.</li>\n<li>Data API, built on top of Engine, this is the part users build their databases.</li>\n<li>Resource management, or Microunit, provides an abstraction to the underlying resource pool. Engine talks to Microunit to get the resources it needs.</li>\n</ol>",
+        "id": 263087387,
+        "sender_full_name": "tison",
+        "timestamp": 1638232425
+    },
+    {
+        "content": "<blockquote>\n<p>Some integrations to implement a file/grpc kernel</p>\n</blockquote>\n<p><span class=\"user-mention\" data-user-id=\"460843\">@Richard</span> is it possible we compose a memstorage with a grpc journal? From <a href=\"https://github.com/engula/engula/pull/143\">#143</a> it seems that a so-called \"memkernel\" always couples memstorage with memjournal, a \"filekernel\" will couple filestorage and filejournal, and so does grpckernel. This restriction (coincident) seems unnecessary.</p>",
+        "id": 263249215,
+        "sender_full_name": "tison",
+        "timestamp": 1638339670
+    },
+    {
+        "content": "<p>We can still allow dynamic composition by adding a dynamic kernel or something, which integrates arbitrary implementation of journal, storage, etc.</p>",
+        "id": 263249460,
+        "sender_full_name": "Richard",
+        "timestamp": 1638339897
+    },
+    {
+        "content": "<p>But I think most users don't need that kind of flexibility. So I think some easy-to-understand <code>memory kernel</code> and <code>file kernel</code> are more friendly to them.</p>",
+        "id": 263249550,
+        "sender_full_name": "Richard",
+        "timestamp": 1638339980
+    },
+    {
+        "content": "<p>OK for deliver an early version. Unless there is optimization point if we know all inners are memory/files/etc., I tend to define one kernel and let deliver an all-memory kernel a pre-define config. Then the usage looks like:</p>\n<div class=\"codehilite\" data-code-language=\"Rust\"><pre><span></span><code><span class=\"kd\">let</span><span class=\"w\"> </span><span class=\"n\">kernel</span><span class=\"w\"> </span><span class=\"o\">=</span><span class=\"w\"> </span><span class=\"n\">Kernel</span>::<span class=\"n\">from_config</span><span class=\"p\">(</span><span class=\"n\">KernalConfig</span>::<span class=\"n\">Memory</span><span class=\"p\">);</span><span class=\"w\"></span>\n\n<span class=\"k\">fn</span> <span class=\"nf\">from_config</span><span class=\"p\">(</span><span class=\"o\">..</span><span class=\"p\">.)</span><span class=\"w\"> </span><span class=\"p\">{</span><span class=\"w\"></span>\n<span class=\"w\">  </span><span class=\"o\">..</span><span class=\"p\">.</span><span class=\"w\"></span>\n<span class=\"w\">  </span><span class=\"n\">Kernel</span><span class=\"w\"> </span><span class=\"p\">{</span><span class=\"w\"></span>\n<span class=\"w\">    </span><span class=\"n\">stream</span>: <span class=\"nb\">Box</span>::<span class=\"n\">new</span><span class=\"p\">(</span><span class=\"n\">MemStream</span>::<span class=\"n\">new</span><span class=\"p\">()),</span><span class=\"w\"></span>\n<span class=\"w\">    </span><span class=\"n\">bucket</span>: <span class=\"nb\">Box</span>::<span class=\"n\">new</span><span class=\"p\">(</span><span class=\"n\">MemBucket</span>::<span class=\"n\">new</span><span class=\"p\">()),</span><span class=\"w\"></span>\n<span class=\"w\">  </span><span class=\"p\">}</span><span class=\"w\"></span>\n<span class=\"p\">}</span><span class=\"w\"></span>\n</code></pre></div>\n<p>... one optimize point is that if we have a specialization for MemKernel, we don't have to box things. Anyway, users will take to a kernel from its interface and no matter how we construct it.</p>",
+        "id": 263250088,
+        "sender_full_name": "tison",
+        "timestamp": 1638340567
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"456473\">@tison</span> Yes, that's how a dynamic kernel may work, by boxing everything inside it :)</p>",
+        "id": 263250185,
+        "sender_full_name": "Richard",
+        "timestamp": 1638340709
+    },
+    {
+        "content": "<p>With a more dynamic signature <code>pub type ResultStream&lt;T&gt; = Box&lt;dyn futures::Stream&lt;Item = Result&lt;T&gt;&gt; + Send + Unpin&gt;;</code>, it's much easier to <a href=\"https://github.com/engula/engula/blob/833ff88352817950c8360d82643e9bfe5ed4b95f/src/journal/src/grpc/stream.rs#L47-L65\">implement \"either steam\" logic</a>!</p>\n<p>And IIUC most languages just box all futures :)</p>",
+        "id": 263449007,
+        "sender_full_name": "tison",
+        "timestamp": 1638457092
+    },
+    {
+        "content": "<p>Yes, but Rust wants to give you a zero-cost abstraction, which also brings you a bunch of type bounds!</p>",
+        "id": 263450516,
+        "sender_full_name": "Richard",
+        "timestamp": 1638457649
+    }
+]

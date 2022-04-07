@@ -1,0 +1,506 @@
+[
+    {
+        "content": "<p>Created a universe fallback topic.</p>",
+        "id": 263087610,
+        "sender_full_name": "tison",
+        "timestamp": 1638232519
+    },
+    {
+        "content": "<p>Zulip can be an unintuitive platform to get started with. As documented in Rust Forge, to get started, you can take a look at the <a href=\"https://zulipchat.com/help/getting-started-with-zulip\">getting started guide</a>. For more detail, examine the <a href=\"https://zulipchat.com/help/\">Zulip user documentation</a>.</p>",
+        "id": 263103728,
+        "sender_full_name": "tison",
+        "timestamp": 1638250505
+    },
+    {
+        "content": "<p>Personally, I regard it as a composition of topics and topic groups (streams). That means, in Slack, you should create a thread explicit, but in Zulip, every message naturally belongs to a thread (topic).</p>",
+        "id": 263103801,
+        "sender_full_name": "tison",
+        "timestamp": 1638250602
+    },
+    {
+        "content": "<p>I'm looking for partners testing the meet functionality. If you volunteer to, ping me by <span class=\"user-mention\" data-user-id=\"456473\">@tison</span> .</p>",
+        "id": 263103820,
+        "sender_full_name": "tison",
+        "timestamp": 1638250672
+    },
+    {
+        "content": "<p>Also I create a <a href=\"https://github.com/engula/engula/discussions/141\">discussion</a> about this channel on the discussion forum.</p>",
+        "id": 263103870,
+        "sender_full_name": "tison",
+        "timestamp": 1638250717
+    },
+    {
+        "content": "<p>Oh, the UI looks very nerdy to me :)</p>",
+        "id": 263105421,
+        "sender_full_name": "Richard",
+        "timestamp": 1638252788
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460845\">zojw</span> has marked this topic as resolved.</p>",
+        "id": 263105968,
+        "sender_full_name": "Notification Bot",
+        "timestamp": 1638253438
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460845\">zojw</span> has marked this topic as unresolved.</p>",
+        "id": 263105979,
+        "sender_full_name": "Notification Bot",
+        "timestamp": 1638253443
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span> <a href=\"#narrow/stream/306467-general/topic/random/near/263105421\">said</a>:</p>\n<blockquote>\n<p>Oh, the UI looks very nerdy to me :)</p>\n</blockquote>\n<p>I think it's the reason why nick posted <a href=\"https://twitter.com/nick_r_cameron/status/1458017392357953536\">this tweet</a>. The style is somehow into IRC era and if you like full-text style, you can get used to it.</p>\n<div class=\"inline-preview-twitter\"><div class=\"twitter-tweet\"><a href=\"https://twitter.com/nick_r_cameron/status/1458017392357953536\"><img class=\"twitter-avatar\" src=\"https://uploads.zulipusercontent.net/9a3b41aaeeca76f33fb70fd738413703f6fe8ebe/68747470733a2f2f7062732e7477696d672e636f6d2f70726f66696c655f696d616765732f3334343531333236313537393831343131312f37613265333634666632623835636265633466663731393663653732363064315f6e6f726d616c2e706e67\"></a><p><a href=\"https://twitter.com/dsilverstone\">@dsilverstone</a> <a href=\"https://twitter.com/rustlang\">@rustlang</a> It took me a long time to warm to Zulip, the UI is kind of a train wreck, but I a fan now. Going back to Slack or Discord feels like chaos</p><span>- nrc (@nick_r_cameron)</span></div></div>",
+        "id": 263119674,
+        "sender_full_name": "tison",
+        "timestamp": 1638264974
+    },
+    {
+        "content": "<blockquote>\n<p>Your organization's request for sponsored hosting has been approved! <span aria-label=\"tada\" class=\"emoji emoji-1f389\" role=\"img\" title=\"tada\">:tada:</span>.<br>\nYou have been upgraded to Zulip Cloud Standard, free of charge.</p>\n</blockquote>\n<p>We're now upgraded to Standard plan free of charge as an open-source project. And I switched the message retain policy to retain forever.</p>",
+        "id": 263238951,
+        "sender_full_name": "tison",
+        "timestamp": 1638327697
+    },
+    {
+        "content": "<p>I'd like to know which data format is most commonly used in Rust world for <code>serde</code>? I've checked <a href=\"https://serde.rs/\">the doc of serde</a> but all data formats listed there don't seem a de-factor choice.</p>",
+        "id": 263550444,
+        "sender_full_name": "tison",
+        "timestamp": 1638521781
+    },
+    {
+        "content": "<p>The question comes from <a href=\"https://github.com/engula/engula/pull/158#discussion_r761622075\">here</a> where I tried to serialize timestamp so that we don't depend on that a timestamp must be a <code>u64</code>. For quickly implementing I choose <code>serde_json</code> but it looks weird anyway :P</p>",
+        "id": 263550598,
+        "sender_full_name": "tison",
+        "timestamp": 1638521884
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"456473\">@tison</span> now that we control the specific type of <code>Timestamp</code>. I think we can simply encode it to big endian bytes, or, <code>to_be_bytes()</code>.</p>",
+        "id": 263550698,
+        "sender_full_name": "Richard",
+        "timestamp": 1638521953
+    },
+    {
+        "content": "<p>Big endian bytes are also memory comparable, so if <code>u64</code> is proofed to be not sufficient someday, we can just use <code>Vec&lt;u8&gt;</code> instead.</p>",
+        "id": 263550988,
+        "sender_full_name": "Richard",
+        "timestamp": 1638522074
+    },
+    {
+        "content": "<p>Do you mean that we define our own special data format for <code>Timestamp</code>? Let me give it a try.</p>",
+        "id": 263551326,
+        "sender_full_name": "tison",
+        "timestamp": 1638522259
+    },
+    {
+        "content": "<p>Yeah, we don't actually need the <code>serde</code> stuff here.</p>",
+        "id": 263551371,
+        "sender_full_name": "Richard",
+        "timestamp": 1638522305
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"460843\">@Richard</span> <a href=\"https://github.com/engula/engula/pull/163\">https://github.com/engula/engula/pull/163</a> here is the PR for it.</p>",
+        "id": 263571989,
+        "sender_full_name": "tison",
+        "timestamp": 1638534454
+    },
+    {
+        "content": "<p>This is an oddly good place for chat.</p>",
+        "id": 263817429,
+        "sender_full_name": "dragonly",
+        "timestamp": 1638777431
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"462436\">dragonly</span> <a href=\"#narrow/stream/306467-general/topic/random/near/263817429\">said</a>:</p>\n<blockquote>\n<p>This is an oddly good place for chat.</p>\n</blockquote>\n<p>Yep. I think the UI style is somehow inherited from the IRC era. I deadly like it.</p>",
+        "id": 263841088,
+        "sender_full_name": "tison",
+        "timestamp": 1638792857
+    },
+    {
+        "content": "<p><a href=\"https://blog.sesse.net/blog/tech/2021-12-05-16-41_leaving_mysql.html\">https://blog.sesse.net/blog/tech/2021-12-05-16-41_leaving_mysql.html</a></p>",
+        "id": 264104760,
+        "sender_full_name": "Richard",
+        "timestamp": 1638931673
+    },
+    {
+        "content": "<p><a href=\"https://www.ncameron.org/blog/portable-and-interoperable-async-rust/\">https://www.ncameron.org/blog/portable-and-interoperable-async-rust/</a></p>",
+        "id": 264162504,
+        "sender_full_name": "tison",
+        "timestamp": 1638973814
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"460843\">@Richard</span> <span class=\"user-mention\" data-user-id=\"460845\">@zojw</span> <span class=\"user-mention\" data-user-id=\"462456\">@p4tr1ck</span> I'm wondering one question: is the current Engine design primarily aimed at using as a service or a library? They're quite different. If we're thinking of service, there're multiple units and cluster management things; but if a library, there are no client/server things.</p>",
+        "id": 264425003,
+        "sender_full_name": "tison",
+        "timestamp": 1639130555
+    },
+    {
+        "content": "<p>Let's have a meeting about this. I think there are too much confusion and misunderstanding here.</p>",
+        "id": 264425139,
+        "sender_full_name": "Richard",
+        "timestamp": 1639130645
+    },
+    {
+        "content": "<p>I can see that currently when we implement the memory hash engine, a goal is to \"replace rocksdb\" as a library. But defining Engine/Kernel concepts requires a view from deployment. The design is currently lack of a cluster coordinator that makes things unclear.</p>",
+        "id": 264425187,
+        "sender_full_name": "tison",
+        "timestamp": 1639130680
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"456473\">@tison</span> Let's wait for a while to see if <span class=\"user-mention\" data-user-id=\"462456\">@p4tr1ck</span> wants to join us.</p>",
+        "id": 264425320,
+        "sender_full_name": "Richard",
+        "timestamp": 1639130763
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span> <a href=\"#narrow/stream/306467-general/topic/random/near/264425139\">said</a>:</p>\n<blockquote>\n<p>Let's have a meeting about this. I think there are too much confusion and misunderstanding here.</p>\n</blockquote>\n<p>We can make a schedule for this discussion? It's about dinner now I think :P</p>",
+        "id": 264425353,
+        "sender_full_name": "tison",
+        "timestamp": 1639130765
+    },
+    {
+        "content": "<p>I think maybe at 8 or 9 PM.</p>",
+        "id": 264425452,
+        "sender_full_name": "Richard",
+        "timestamp": 1639130833
+    },
+    {
+        "content": "<p>I created a schedule on Google Canlander (8 PM) and you can <a href=\"https://us05web.zoom.us/j/84570335353?pwd=MUV2dHdUTFBFeGtGUVZ1Z0crbGUzdz09\">click to join video call</a> at that time.</p>",
+        "id": 264429025,
+        "sender_full_name": "tison",
+        "timestamp": 1639132955
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"456473\">tison</span> <a href=\"#narrow/stream/306467-general/topic/random/near/264429025\">said</a>:</p>\n<blockquote>\n<p>I created a schedule on Google Canlander (8 PM) and you can <a href=\"https://us05web.zoom.us/j/84570335353?pwd=MUV2dHdUTFBFeGtGUVZ1Z0crbGUzdz09\">click to join video call</a> at that time.</p>\n</blockquote>\n<p><span class=\"user-mention\" data-user-id=\"460845\">@zojw</span> <span class=\"user-mention\" data-user-id=\"460843\">@Richard</span> <span class=\"user-mention\" data-user-id=\"462456\">@p4tr1ck</span> as a reminder, is the schedule OK for you? Above said 8 or 9 and I propose 8 :)</p>",
+        "id": 264436096,
+        "sender_full_name": "tison",
+        "timestamp": 1639137242
+    },
+    {
+        "content": "<p>I am OK</p>",
+        "id": 264436524,
+        "sender_full_name": "Richard",
+        "timestamp": 1639137485
+    },
+    {
+        "content": "<p>I am OK</p>",
+        "id": 264436546,
+        "sender_full_name": "p4tr1ck",
+        "timestamp": 1639137501
+    },
+    {
+        "content": "<p>I summarize our discussion a bit at <a href=\"https://github.com/engula/engula/discussions/182#discussioncomment-1785600\">this thread</a>. Feel free to comment more.</p>",
+        "id": 264448181,
+        "sender_full_name": "tison",
+        "timestamp": 1639143677
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"462456\">@p4tr1ck</span> right now we talk about engine-specific logic on the kernel.  In the situation of distributed deployment, an Engine connect to a remote <code>K8sKernel</code> with a local <code>GrpcKernel</code> handle. I'd like to ask that in this case, where the engine-specific logic should be loaded? I can imagine that it's loaded in both <code>Kernel</code>.</p>\n<p>Hopefully, we can use compose over inheritance so that a general <code>K8sKernel</code> takes these specific logics behind a handle instead of <code>K8sXxxKernel</code> and  <code>K8sYyyKernel</code>:</p>\n<div class=\"codehilite\" data-code-language=\"Rust\"><pre><span></span><code><span class=\"k\">struct</span> <span class=\"nc\">K8sKernel</span><span class=\"w\"> </span><span class=\"p\">{</span><span class=\"w\"></span>\n<span class=\"w\">  </span><span class=\"n\">XxxOrYyy</span><span class=\"w\"> </span><span class=\"n\">SpecificLogicsHandle</span><span class=\"w\"></span>\n<span class=\"p\">}</span><span class=\"w\"></span>\n</code></pre></div>",
+        "id": 264450400,
+        "sender_full_name": "tison",
+        "timestamp": 1639144717
+    },
+    {
+        "content": "<p>how about let localKernel reject compaction request and let compaction run in local engine??</p>\n<p>for example: </p>\n<p>in local env, localEngine find it need do compaction and prepare compaction input param(e.g. candidate objects), and request localKernel to compaction,  localKernel receive and reject with ErrDoItLocal... then localEngine run doCompaction local with some thread pool - -</p>\n<p>but for k8s, localEngine find it need do compaction and prepare compaction input param(e.g. candidate objects),  and request k8sKernel to compaction, k8sKernel receive request and  setup resource in k8s jobpool and run another localEngine but read object from shared storage like S3, at last k8sKernel request new instance's localEngine's doCompaction method <span aria-label=\"sweat smile\" class=\"emoji emoji-1f605\" role=\"img\" title=\"sweat smile\">:sweat_smile:</span></p>",
+        "id": 264452210,
+        "sender_full_name": "zojw",
+        "timestamp": 1639145497
+    },
+    {
+        "content": "<p>There is a better way for this condition as:</p>\n<div class=\"codehilite\" data-code-language=\"Rust\"><pre><span></span><code><span class=\"k\">match</span><span class=\"w\"> </span><span class=\"n\">Kernel</span><span class=\"w\"> </span><span class=\"p\">{</span><span class=\"w\"></span>\n<span class=\"w\">  </span><span class=\"n\">k</span><span class=\"w\"> </span><span class=\"o\">@</span><span class=\"w\"> </span><span class=\"n\">LocalKernel</span><span class=\"w\"> </span><span class=\"o\">=&gt;</span><span class=\"w\"> </span><span class=\"o\">..</span><span class=\"p\">.,</span><span class=\"w\"></span>\n<span class=\"w\">  </span><span class=\"n\">k</span><span class=\"w\"> </span><span class=\"o\">@</span><span class=\"w\"> </span><span class=\"n\">GrpcKernel</span><span class=\"w\"> </span><span class=\"o\">=&gt;</span><span class=\"w\"> </span><span class=\"o\">..</span><span class=\"p\">.,</span><span class=\"w\"></span>\n<span class=\"p\">}</span><span class=\"w\"></span>\n</code></pre></div>",
+        "id": 264452725,
+        "sender_full_name": "tison",
+        "timestamp": 1639145724
+    },
+    {
+        "content": "<p>When you talk to a K8sKernel, I think it's almost via a GrpcKernel interface and the K8sKernel running in the KernelServer.</p>",
+        "id": 264452845,
+        "sender_full_name": "tison",
+        "timestamp": 1639145766
+    },
+    {
+        "content": "<p>OMG, <code>ErrDoItLocal</code></p>",
+        "id": 264453149,
+        "sender_full_name": "Richard",
+        "timestamp": 1639145916
+    },
+    {
+        "content": "<blockquote>\n<p>where the engine-specific logic should be loaded?</p>\n</blockquote>\n<p><span class=\"user-mention\" data-user-id=\"456473\">@tison</span>  just like the example given by <span class=\"user-mention\" data-user-id=\"460845\">@zojw</span> , in k8s,  <code>LocalEngine</code>  find it need to do compaction, send request to <code>K8sKernel</code> through local <code>GrpcKernel</code> handle.  This looks like:</p>\n<div class=\"codehilite\" data-code-language=\"Rust\"><pre><span></span><code><span class=\"k\">impl</span><span class=\"w\"> </span><span class=\"n\">Kernel</span><span class=\"w\"> </span><span class=\"k\">for</span><span class=\"w\"> </span><span class=\"n\">K8sKernel</span><span class=\"w\"> </span><span class=\"p\">{</span><span class=\"w\"></span>\n<span class=\"w\">    </span><span class=\"k\">fn</span> <span class=\"nf\">delegate</span><span class=\"p\">(</span><span class=\"o\">&amp;</span><span class=\"bp\">self</span><span class=\"p\">,</span><span class=\"w\"> </span><span class=\"n\">task_url</span>: <span class=\"kp\">&amp;</span><span class=\"kt\">str</span><span class=\"p\">)</span><span class=\"w\"> </span>-&gt; <span class=\"nb\">Result</span><span class=\"o\">&lt;</span><span class=\"p\">(),</span><span class=\"w\"> </span><span class=\"n\">Error</span><span class=\"o\">&gt;</span><span class=\"w\"> </span><span class=\"p\">{</span><span class=\"w\"> </span><span class=\"o\">..</span><span class=\"p\">.</span><span class=\"w\"> </span><span class=\"p\">}</span><span class=\"w\"></span>\n<span class=\"p\">}</span><span class=\"w\"></span>\n\n<span class=\"k\">impl</span><span class=\"w\"> </span><span class=\"n\">LocalEngine</span><span class=\"w\"> </span><span class=\"p\">{</span><span class=\"w\"></span>\n<span class=\"w\">    </span><span class=\"k\">fn</span> <span class=\"nf\">do_compaction</span><span class=\"p\">(</span><span class=\"o\">&amp;</span><span class=\"bp\">self</span><span class=\"p\">)</span><span class=\"w\"> </span><span class=\"p\">{</span><span class=\"w\"></span>\n<span class=\"w\">        </span><span class=\"bp\">self</span><span class=\"p\">.</span><span class=\"n\">kernel</span><span class=\"p\">.</span><span class=\"n\">delegate</span><span class=\"p\">(</span><span class=\"s\">\"k8s://local_engine_binary?params1=xxx&amp;params2=xx\"</span><span class=\"p\">);</span><span class=\"w\"></span>\n<span class=\"w\">    </span><span class=\"p\">}</span><span class=\"w\"></span>\n<span class=\"p\">}</span><span class=\"w\"></span>\n</code></pre></div>\n<p>So the <code>K8sKernel</code> doesn't need to know the engine-specific logic.  On the same time,  It is also easy to unify remote and local logic.  For example, we add some logic in <code>LocalKernel</code>:</p>\n<div class=\"codehilite\" data-code-language=\"Rust\"><pre><span></span><code><span class=\"k\">trait</span><span class=\"w\"> </span><span class=\"n\">RequestRoute</span><span class=\"w\"> </span><span class=\"p\">{</span><span class=\"w\"></span>\n<span class=\"w\">    </span><span class=\"k\">fn</span> <span class=\"nf\">forward</span><span class=\"p\">(</span><span class=\"o\">&amp;</span><span class=\"bp\">self</span><span class=\"p\">,</span><span class=\"w\"> </span><span class=\"n\">url</span>: <span class=\"kp\">&amp;</span><span class=\"kt\">str</span><span class=\"p\">);</span><span class=\"w\"></span>\n<span class=\"p\">}</span><span class=\"w\"></span>\n\n<span class=\"k\">struct</span> <span class=\"nc\">LocalKernel</span><span class=\"w\"> </span><span class=\"p\">{</span><span class=\"w\"></span>\n<span class=\"w\">    </span><span class=\"n\">req_router</span>: <span class=\"nb\">Box</span><span class=\"o\">&lt;</span><span class=\"k\">dyn</span><span class=\"w\"> </span><span class=\"n\">RequestRouter</span><span class=\"o\">&gt;</span><span class=\"p\">,</span><span class=\"w\"></span>\n<span class=\"p\">}</span><span class=\"w\"></span>\n\n<span class=\"k\">impl</span><span class=\"w\"> </span><span class=\"n\">LocalKernel</span><span class=\"w\"> </span><span class=\"p\">{</span><span class=\"w\"></span>\n<span class=\"w\">    </span><span class=\"k\">fn</span> <span class=\"nf\">new</span><span class=\"p\">(</span><span class=\"n\">req_router</span>: <span class=\"nb\">Box</span><span class=\"o\">&lt;</span><span class=\"k\">dyn</span><span class=\"w\"> </span><span class=\"n\">RequestRouter</span><span class=\"o\">&gt;</span><span class=\"p\">)</span><span class=\"w\"> </span>-&gt; <span class=\"nc\">Kernel</span><span class=\"w\"> </span><span class=\"p\">{</span><span class=\"w\"> </span><span class=\"o\">..</span><span class=\"p\">.</span><span class=\"w\"> </span><span class=\"p\">}</span><span class=\"w\"></span>\n<span class=\"p\">}</span><span class=\"w\"></span>\n\n<span class=\"k\">impl</span><span class=\"w\"> </span><span class=\"n\">Kernel</span><span class=\"w\"> </span><span class=\"k\">for</span><span class=\"w\"> </span><span class=\"n\">LocalKernel</span><span class=\"w\"> </span><span class=\"p\">{</span><span class=\"w\"></span>\n<span class=\"w\">    </span><span class=\"k\">fn</span> <span class=\"nf\">delegate</span><span class=\"p\">(</span><span class=\"o\">&amp;</span><span class=\"bp\">self</span><span class=\"p\">,</span><span class=\"w\"> </span><span class=\"n\">url</span>: <span class=\"kp\">&amp;</span><span class=\"kt\">str</span><span class=\"p\">)</span><span class=\"w\"> </span>-&gt; <span class=\"nb\">Result</span><span class=\"o\">&lt;</span><span class=\"p\">(),</span><span class=\"w\"> </span><span class=\"n\">Error</span><span class=\"o\">&gt;</span><span class=\"w\"> </span><span class=\"p\">{</span><span class=\"w\"></span>\n<span class=\"w\">        </span><span class=\"bp\">self</span><span class=\"p\">.</span><span class=\"n\">req_router</span><span class=\"p\">.</span><span class=\"n\">forward</span><span class=\"p\">(</span><span class=\"n\">url</span><span class=\"p\">);</span><span class=\"w\"></span>\n<span class=\"w\">    </span><span class=\"p\">}</span><span class=\"w\"></span>\n<span class=\"p\">}</span><span class=\"w\"></span>\n</code></pre></div>\n<p>In this way, LocalKernel doesn't need to be aware of engine-specific logics, and the interface can be kept uniform.</p>",
+        "id": 264658525,
+        "sender_full_name": "p4tr1ck",
+        "timestamp": 1639363894
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"460843\">@Richard</span> Do  you plan building a experiment database system based on engula? I am very interested. Is there anything I can participate in ?</p>",
+        "id": 264664335,
+        "sender_full_name": "p4tr1ck",
+        "timestamp": 1639372004
+    },
+    {
+        "content": "<p>Yes, I do :)</p>",
+        "id": 264664366,
+        "sender_full_name": "Richard",
+        "timestamp": 1639372054
+    },
+    {
+        "content": "<p>Building Engula without using it ourselves is not so interesting.</p>",
+        "id": 264664442,
+        "sender_full_name": "Richard",
+        "timestamp": 1639372112
+    },
+    {
+        "content": "<blockquote>\n<p>I am very interested. Is there anything I can participate in?</p>\n</blockquote>\n<p>But I don't have a clear direction about the experimental database yet. So we can start with discussing what kind of database we want to build here.</p>",
+        "id": 264664604,
+        "sender_full_name": "Richard",
+        "timestamp": 1639372357
+    },
+    {
+        "content": "<p>I remember <a href=\"https://github.com/engula/engula/issues/160\">this issue</a> and we can start a new topic or I'd prefer primary on the GitHub issue.</p>",
+        "id": 264665796,
+        "sender_full_name": "tison",
+        "timestamp": 1639373822
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"460843\">@Richard</span> that's great. <span class=\"user-mention\" data-user-id=\"456473\">@tison</span> I also agree to discuss on github issue or discussion.</p>\n<p>BTW, building a sql database system may not be the best choice, because a lot of sql-releated work needs to be processed, and the goal at this stage may be to verify the ability of engula faster.</p>",
+        "id": 264666660,
+        "sender_full_name": "p4tr1ck",
+        "timestamp": 1639374909
+    },
+    {
+        "content": "<p>Consider that just a toy of mine so far.</p>",
+        "id": 264667659,
+        "sender_full_name": "Richard",
+        "timestamp": 1639376160
+    },
+    {
+        "content": "<p>Aha, I also planned to make a toy before, but I delayed it for a long time.</p>",
+        "id": 264667828,
+        "sender_full_name": "p4tr1ck",
+        "timestamp": 1639376360
+    },
+    {
+        "content": "<p>Hello everyone, I am a newcomer developer invited by tison <span class=\"user-mention\" data-user-id=\"456473\">@tison</span> . I am a former PingCAP intern. I am currently studying as a graduate student in a Chinese university. I read each line of code of the project today, and I have a deep understanding of why the engine and kernel are designed, and what their role is. It's really a genius design! It's really great! Not even sleepy at night! But after reading it, there are still a few suggestions: First, it is unfriendly to have no comments! Second, in the current memtable or journal design, no lock-free data structure is designed. Of course, it is understandable, in order to have a demo that can be used as soon as possible, but the global lock is really not so elegant compared to the design of stream. You can consider using Atomic lock-free programming + Debra or ebr, or use channel.</p>\n<p>PS: I am currently doing similar things on my github, but the main focus is on designing high-performance KV storage with lock-free data structures.</p>\n<p>Here is my link to Discussion, if you are interested, you can discuss it below</p>\n<p><a href=\"https://github.com/engula/engula/discussions/197\">https://github.com/engula/engula/discussions/197</a></p>",
+        "id": 264887690,
+        "sender_full_name": "Luhuanbing",
+        "timestamp": 1639500751
+    },
+    {
+        "content": "<p>I guess I should consider managing my HN account from now on <span aria-label=\"rofl\" class=\"emoji emoji-1f923\" role=\"img\" title=\"rofl\">:rofl:</span></p>",
+        "id": 265289159,
+        "sender_full_name": "Richard",
+        "timestamp": 1639744141
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span> <a href=\"#narrow/stream/306467-general/topic/release.200.2E2/near/265289159\">said</a>:</p>\n<blockquote>\n<p>I guess I should consider managing my HN account from now on <span aria-label=\"rofl\" class=\"emoji emoji-1f923\" role=\"img\" title=\"rofl\">:rofl:</span></p>\n</blockquote>\n<p>Haha. I must say I subscribe HN a long time ago but never sign up until today :(</p>",
+        "id": 265294401,
+        "sender_full_name": "tison",
+        "timestamp": 1639747274
+    },
+    {
+        "content": "<p>Send a random message here to verify <a href=\"https://tisonkun.org/zulip-archive/\">Zulip Archive</a> updates correctly.</p>",
+        "id": 265458950,
+        "sender_full_name": "tison",
+        "timestamp": 1639885644
+    },
+    {
+        "content": "<p>I will be out in the next few days. So I may not be able to respond here or on Github in time. FYI</p>",
+        "id": 265690384,
+        "sender_full_name": "Richard",
+        "timestamp": 1640096774
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"460843\">@Richard</span> wish you have a good break!</p>",
+        "id": 265701170,
+        "sender_full_name": "tison",
+        "timestamp": 1640102263
+    },
+    {
+        "content": "<p>It seems the project's activities grows gradually (<a href=\"https://github.com/engula/engula/discussions/220\">ref0</a>, <a href=\"https://github.com/engula/engula/discussions/216\">ref1</a>, <a href=\"https://github.com/engula/engula/discussions/218\">ref2</a>, <a href=\"https://github.com/engula/engula/discussions/214\">ref3</a>). It can be challenging for maintaining more and more threads :)</p>",
+        "id": 265701421,
+        "sender_full_name": "tison",
+        "timestamp": 1640102376
+    },
+    {
+        "content": "<p>I was looking into the code of v0.2.0, just some random thought.<br>\nIt seems to me that \"Kernel\" is just a very thin layer and can be considered as a service registry. There are several services in this system:</p>\n<ul>\n<li>Journal</li>\n<li>Storage</li>\n<li>Background</li>\n<li>Manifest (I guess it will be added later?)</li>\n</ul>\n<p>A user interact with a specific \"engine\" which implements:</p>\n<ul>\n<li>Transaction</li>\n<li>Query Processing (For example SQL optimizer, execution...)</li>\n<li>Sharding related</li>\n</ul>\n<p>The \"Kernel\" is more like a way for service discovery. All the other components/services (Journal, etc..) seems like some kind of \"smart\" proxy that abstract the functionality of the public cloud.</p>",
+        "id": 265930615,
+        "sender_full_name": "Ming",
+        "timestamp": 1640276317
+    },
+    {
+        "content": "<p>Kernel integrates different components for Engine so that Engine doesn't need to care about how all the underlying components. Kernel also allows different Engine instances (primary/secondary) to share some common state.</p>",
+        "id": 265931251,
+        "sender_full_name": "Richard",
+        "timestamp": 1640276769
+    },
+    {
+        "content": "<p>I thought all the following interface can be implemented in \"Manifest Service\", and Kernel is just a way to find all the other stuffs for an \"Engine\".<br>\nKernel#apply_update<br>\nKernel#current_version<br>\nKernel#version_updates</p>",
+        "id": 265931869,
+        "sender_full_name": "Ming",
+        "timestamp": 1640277239
+    },
+    {
+        "content": "<p>Oh, yes, I actually considered that way. I think the abstraction between Kernel and Manifest is still a bit vague now. There are two ways here:</p>\n<ul>\n<li>Make Manifest very simple, which only provides some key-value metadata storage</li>\n<li>Make Manifest a bit heavier, providing the functionalities listed above</li>\n</ul>\n<p>I haven't made up my mind here yet. Another thing is whether Manifest should be moved outside of Kernel and put in the same level with Journal/Storage. I think I will refactor these things to make it more clear in v0.3.</p>",
+        "id": 265933379,
+        "sender_full_name": "Richard",
+        "timestamp": 1640278328
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span> <a href=\"#narrow/stream/306467-general/topic/random/near/265289159\">said</a>:</p>\n<blockquote>\n<p>I guess I should consider managing my HN account from now on <span aria-label=\"rofl\" class=\"emoji emoji-1f923\" role=\"img\" title=\"rofl\">:rofl:</span></p>\n</blockquote>\n<p>Let me share my two cents with you guys. \"如何在Hacker News上成功创建一个ID\"<br>\n<a href=\"https://www.zhihu.com/question/19661127/answer/2284119532\">https://www.zhihu.com/question/19661127/answer/2284119532</a></p>",
+        "id": 266140117,
+        "sender_full_name": "Jun Gu",
+        "timestamp": 1640571399
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"462439\">@Jun Gu</span> thanks for your sharing. I contacted with the moderation team and my account should be able to post next announcement :)</p>",
+        "id": 266232976,
+        "sender_full_name": "tison",
+        "timestamp": 1640669888
+    },
+    {
+        "content": "<p>good to know <span aria-label=\"blush\" class=\"emoji emoji-1f60a\" role=\"img\" title=\"blush\">:blush:</span></p>",
+        "id": 266262320,
+        "sender_full_name": "Jun Gu",
+        "timestamp": 1640700734
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"460843\">@Richard</span> I feel that others can do a review after merge once you push all works related to luna engine in the codebase. It's currently fragmented and without an overall perspective there are little valuable comments.</p>",
+        "id": 266325135,
+        "sender_full_name": "tison",
+        "timestamp": 1640764445
+    },
+    {
+        "content": "<p>Yeah, makes sense. It's hard for me to explain some changes without showing the other parts too.</p>",
+        "id": 266325289,
+        "sender_full_name": "Richard",
+        "timestamp": 1640764647
+    },
+    {
+        "content": "<p>Go ahead! lol</p>",
+        "id": 266325365,
+        "sender_full_name": "tison",
+        "timestamp": 1640764712
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"456473\">@tison</span> It seems we can install a Zoom app for Zulip or a Zulip app for Zoom. I don't know how it works, you may take a look :)</p>",
+        "id": 266400208,
+        "sender_full_name": "Richard",
+        "timestamp": 1640836568
+    },
+    {
+        "content": "<p>It requires admin permission</p>",
+        "id": 266400213,
+        "sender_full_name": "Richard",
+        "timestamp": 1640836595
+    },
+    {
+        "content": "<p>Interesting. I think I've installed it already, but possibly with my account only. Let me investigate it.</p>",
+        "id": 266400228,
+        "sender_full_name": "tison",
+        "timestamp": 1640836642
+    },
+    {
+        "content": "<p>It should work for everyone here :)</p>",
+        "id": 266400627,
+        "sender_full_name": "tison",
+        "timestamp": 1640837093
+    },
+    {
+        "content": "<ul>\n<li><a href=\"https://cwiki.apache.org/confluence/display/FLINK/FLIP-188%3A+Introduce+Built-in+Dynamic+Table+Storage\">https://cwiki.apache.org/confluence/display/FLINK/FLIP-188%3A+Introduce+Built-in+Dynamic+Table+Storage</a></li>\n<li><a href=\"https://github.com/apache/flink-table-store/pull/1\">https://github.com/apache/flink-table-store/pull/1</a></li>\n</ul>\n<p>I just found that Apache Flink is also trying to build their own exported state storage. The motivation of Engula that it's a common requirement building a storage engine for any serious data solution holds :)</p>",
+        "id": 267690286,
+        "sender_full_name": "tison",
+        "timestamp": 1641973041
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"456473\">tison</span> <a href=\"#narrow/stream/306467-general/topic/random/near/267690286\">said</a>:</p>\n<blockquote>\n<ul>\n<li><a href=\"https://cwiki.apache.org/confluence/display/FLINK/FLIP-188%3A+Introduce+Built-in+Dynamic+Table+Storage\">https://cwiki.apache.org/confluence/display/FLINK/FLIP-188%3A+Introduce+Built-in+Dynamic+Table+Storage</a></li>\n<li><a href=\"https://github.com/apache/flink-table-store/pull/1\">https://github.com/apache/flink-table-store/pull/1</a></li>\n</ul>\n<p>I just found that Apache Flink is also trying to build their own exported state storage. The motivation of Engula that it's a common requirement building a storage engine for any serious data solution holds :)</p>\n</blockquote>\n<p>Woo, thanks for sharing, it seems they choose save debezium in log store as default, what's the benefit of  debezium? Does it can help our journal? :)  (for example,  other system like es can use a engula's \"debezium journal\" as CDC?</p>",
+        "id": 267690629,
+        "sender_full_name": "zojw",
+        "timestamp": 1641973426
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"460845\">@zojw</span> I'm unfamiliar with difference between CDC data formats. But the reason that in the proposal they chooses debezium includes that Flink already support this formats[1] and it's one of the widest used data format; also, flink-cdc primarily supports debezium[2].</p>\n<blockquote>\n<p>other system like es can use a engula's \"debezium journal\" as CDC</p>\n</blockquote>\n<p>I think we can always build our own journal format for every implementation optimally. And yes, if you expose journal events in debezium format, you connect to that ecosystem, while there is still several works to do for processing the events achieving application logics. It's proper to regard such direction as ecosystem connections, not a primary dependency of Engula IMO.</p>\n<p>[1] <a href=\"https://nightlies.apache.org/flink/flink-docs-master/docs/connectors/table/formats/debezium/\">https://nightlies.apache.org/flink/flink-docs-master/docs/connectors/table/formats/debezium/</a><br>\n[2] <a href=\"https://github.com/ververica/flink-cdc-connectors\">https://github.com/ververica/flink-cdc-connectors</a></p>",
+        "id": 267691560,
+        "sender_full_name": "tison",
+        "timestamp": 1641974321
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"460843\">@Richard</span> <span class=\"user-mention\" data-user-id=\"460845\">@zojw</span> <span class=\"user-mention\" data-user-id=\"462456\">@p4tr1ck</span> I notice that RFCs you guys involved are already under implementing. If so, please:</p>\n<ol>\n<li>Update the state of RFCs as accepted.</li>\n<li>Update the pull request link of the RFC in the content.</li>\n<li>Create a tracking issue for each of them and update the issue link in the content.</li>\n<li>Merging the RFC PR.</li>\n</ol>\n<p>Otherwise, we build the RFC process but don't follow it. It's basically logging our works for tracking later for all contributors including ourselves and further incomers.</p>\n<ul>\n<li><a href=\"https://github.com/engula/engula/pull/247\">https://github.com/engula/engula/pull/247</a></li>\n<li><a href=\"https://github.com/engula/engula/pull/280\">https://github.com/engula/engula/pull/280</a></li>\n</ul>",
+        "id": 267827815,
+        "sender_full_name": "tison",
+        "timestamp": 1642053965
+    },
+    {
+        "content": "<ul>\n<li><a href=\"https://github.com/engula/engula/issues/221\">https://github.com/engula/engula/issues/221</a></li>\n<li><a href=\"https://github.com/engula/engula/issues/284\">https://github.com/engula/engula/issues/284</a></li>\n<li><a href=\"https://github.com/engula/engula/issues/263\">https://github.com/engula/engula/issues/263</a></li>\n</ul>\n<p><span class=\"user-mention\" data-user-id=\"460843\">@Richard</span> <span class=\"user-mention\" data-user-id=\"460845\">@zojw</span> <span class=\"user-mention\" data-user-id=\"462456\">@p4tr1ck</span> you guys may create subtasks during working on these tracking issues. It's obviously that you cannot get the issue resolved in a few days, while the subtasks are relatively determinate.</p>\n<p>You can crate subtasks, further then an todo item in the tracking issue, as in <a href=\"https://github.com/pingcap/tidb/issues/28170\">https://github.com/pingcap/tidb/issues/28170</a>, so that I can try to find contributors for taking every subtask and it's more easy to track the process and to understand what tasks are concretely focused.</p>\n<p>Remember that we're working in the community, not only ourselves, so you can always extend your strength by telling others what you want to do. It always helps yourself to mount the target.</p>\n<p>If a potential participant comes into the project, and finds that there is no open issues they can take over, they may simply understand as \"this project doesn't need me\"/\"I can do nothing for you\" and leave.</p>",
+        "id": 268160597,
+        "sender_full_name": "tison",
+        "timestamp": 1642301457
+    },
+    {
+        "content": "<p>After <a href=\"https://github.com/engula/engula/pull/439\">https://github.com/engula/engula/pull/439</a> merged you can run a engula server container with:</p>\n<div class=\"codehilite\" data-code-language=\"Bash\"><pre><span></span><code>docker run --rm -d -p <span class=\"m\">21716</span>:21716 ghcr.io/engula/engula server start\n</code></pre></div>\n<p>which you can play with our examples such as:</p>\n<div class=\"codehilite\" data-code-language=\"Bash\"><pre><span></span><code><span class=\"c1\"># ROOT of engula</span>\n<span class=\"nb\">cd</span> client\ncargo run --example blob\n</code></pre></div>",
+        "id": 272498659,
+        "sender_full_name": "tison",
+        "timestamp": 1645253303
+    },
+    {
+        "content": "<p>However, there are still multiple things we can improve as a binary for easy-to-use. For example, logging, handling ctrl-c and other signals, etc.</p>",
+        "id": 272498675,
+        "sender_full_name": "tison",
+        "timestamp": 1645253342
+    },
+    {
+        "content": "<p>Welcome to play with the image and share your experience or patches to make it more interactive :)</p>",
+        "id": 272498683,
+        "sender_full_name": "tison",
+        "timestamp": 1645253370
+    },
+    {
+        "content": "<p>I notice that <a href=\"https://github.com/engula/engula/discussions/502\">v0.0.3 has been released</a> just now. Congrats and thanks to <span class=\"user-mention\" data-user-id=\"460843\">@Richard</span> 's awesome work! This version, after the redesign, bringing a new data struct API to talk with an Engula server and the whole software looks more interesting to play with now :)</p>",
+        "id": 273439275,
+        "sender_full_name": "tison",
+        "timestamp": 1646015088
+    },
+    {
+        "content": "<p>Wait a minute, I get some problem publishing the crates <span aria-label=\"rolling on the floor laughing\" class=\"emoji emoji-1f923\" role=\"img\" title=\"rolling on the floor laughing\">:rolling_on_the_floor_laughing:</span> , trying to fix it.</p>",
+        "id": 273439407,
+        "sender_full_name": "Richard",
+        "timestamp": 1646015166
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span> <a href=\"#narrow/stream/306467-general/topic/random/near/273439407\">said</a>:</p>\n<blockquote>\n<p>Wait a minute, I get some problem publishing the crates <span aria-label=\"rolling on the floor laughing\" class=\"emoji emoji-1f923\" role=\"img\" title=\"rolling on the floor laughing\">:rolling_on_the_floor_laughing:</span> , trying to fix it.</p>\n</blockquote>\n<p>OK, I did some dirty hack to publish the crates finally.</p>",
+        "id": 273443013,
+        "sender_full_name": "Richard",
+        "timestamp": 1646019953
+    },
+    {
+        "content": "<p>Everything for 0.3 should work now. Please help to verify that :)</p>",
+        "id": 273443077,
+        "sender_full_name": "Richard",
+        "timestamp": 1646020032
+    },
+    {
+        "content": "<p><span class=\"user-mention\" data-user-id=\"456473\">@tison</span> can you help to tweet the release?</p>",
+        "id": 273443756,
+        "sender_full_name": "Richard",
+        "timestamp": 1646020912
+    },
+    {
+        "content": "<p>The Reddit post is <a href=\"https://www.reddit.com/r/rust/comments/t36ha6/announcing_engula_03/\">here</a>.</p>",
+        "id": 273444276,
+        "sender_full_name": "Richard",
+        "timestamp": 1646021552
+    },
+    {
+        "content": "<p><span class=\"user-mention silent\" data-user-id=\"460843\">Richard</span> <a href=\"#narrow/stream/306467-general/topic/random/near/273443756\">said</a>:</p>\n<blockquote>\n<p><span class=\"user-mention silent\" data-user-id=\"456473\">tison</span> can you help to tweet the release?</p>\n</blockquote>\n<p>Sure!</p>",
+        "id": 273449458,
+        "sender_full_name": "tison",
+        "timestamp": 1646028405
+    },
+    {
+        "content": "<p>And here is the tweet <a href=\"https://twitter.com/engulaio/status/1498181369066778628\">https://twitter.com/engulaio/status/1498181369066778628</a>.</p>\n<div class=\"inline-preview-twitter\"><div class=\"twitter-tweet\"><a href=\"https://twitter.com/engulaio/status/1498181369066778628\"><img class=\"twitter-avatar\" src=\"https://uploads.zulipusercontent.net/915287824c38afa7e764af2591e794a14c2a51ad/68747470733a2f2f7062732e7477696d672e636f6d2f70726f66696c655f696d616765732f313435383637373630383933383330373538382f51737a79326f6b505f6e6f726d616c2e706e67\"></a><p>We’re pleased to announce the release of #Engula 0.3, the second official release!🥳<span aria-label=\"rocket\" class=\"emoji emoji-1f680\" role=\"img\" title=\"rocket\">:rocket:</span>\n\nEngula 0.3 is the result of a redesign for interface and architecture, including a set of data structures.\n\nRead more in the release blog.\n<a href=\"https://t.co/LBOfDHgNpG\">https://www.engula.io/blog/release-0.3</a></p><span>- Engula (@engulaio)</span></div></div>",
+        "id": 273450704,
+        "sender_full_name": "tison",
+        "timestamp": 1646029839
+    },
+    {
+        "content": "<p>To make the architecture easier to reason about, I collected some related materials <a href=\"https://github.com/engula/engula/discussions/244\">here</a>.</p>",
+        "id": 273464952,
+        "sender_full_name": "Richard",
+        "timestamp": 1646041240
+    }
+]

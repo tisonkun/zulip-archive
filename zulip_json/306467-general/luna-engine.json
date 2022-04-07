@@ -1,0 +1,56 @@
+[
+    {
+        "content": "<p>I think we need to do more design for the luna engine to guide our development. I am going to start an RFC document during the upcoming holidays. We can have a small discussion beforehand on these two days. Let me know if you want to join the discussion so that I can hold a meeting for it.</p>",
+        "id": 266397796,
+        "sender_full_name": "Richard",
+        "timestamp": 1640833144
+    },
+    {
+        "content": "<p>I'm glad to attend the meeting :)</p>",
+        "id": 266398031,
+        "sender_full_name": "tison",
+        "timestamp": 1640833358
+    },
+    {
+        "content": "<p>It seems the only appropriate time will be tonight <span aria-label=\"smile\" class=\"emoji emoji-1f642\" role=\"img\" title=\"smile\">:smile:</span></p>",
+        "id": 266398143,
+        "sender_full_name": "Richard",
+        "timestamp": 1640833521
+    },
+    {
+        "content": "<p>I think I'll be there after 9PM. If earlier, I can login and listen. Anyway, it's OK as long as the conclusion will be updated on GitHub Discussion or the RFC.</p>",
+        "id": 266399139,
+        "sender_full_name": "tison",
+        "timestamp": 1640834943
+    },
+    {
+        "content": "<p>I'd like to take part in the discussion. Is there a schedule for the meeting?</p>",
+        "id": 266399398,
+        "sender_full_name": "Yu Lei",
+        "timestamp": 1640835276
+    },
+    {
+        "content": "<p>Huachao Huang is inviting you to a scheduled Zoom meeting.</p>\n<p>Topic: Luna Engine<br>\nTime: Dec 30, 2021 09:00 PM Beijing, Shanghai</p>\n<p>Join Zoom Meeting<br>\n<a href=\"https://us05web.zoom.us/j/83846426632?pwd=S1FUQ1BzTTVIalc1ZHpOM0MxWU1adz09\">https://us05web.zoom.us/j/83846426632?pwd=S1FUQ1BzTTVIalc1ZHpOM0MxWU1adz09</a></p>\n<p>Meeting ID: 838 4642 6632<br>\nPasscode: ZVY74c</p>",
+        "id": 266400131,
+        "sender_full_name": "Richard",
+        "timestamp": 1640836472
+    },
+    {
+        "content": "<p>I sent an early RFC <a href=\"https://github.com/huachaohuang/engula/blob/luna-rfc/docs/rfcs/20211230-luna-engine.md\">here</a>, you can check it first.</p>",
+        "id": 266426586,
+        "sender_full_name": "Richard",
+        "timestamp": 1640869079
+    },
+    {
+        "content": "<p>It seems like a mixture of several designs:</p>\n<ol>\n<li>spanner: separation of partition and replication</li>\n<li>spanner: \"interleave table\" to avoid distributed transaction</li>\n<li>Aurora: use Quorum instead of Paxos/Raft<br>\nit's a lot of work...</li>\n</ol>",
+        "id": 266430001,
+        "sender_full_name": "Ming",
+        "timestamp": 1640872398
+    },
+    {
+        "content": "<p>Yes, it's GFS + Bigtable + Spanner + Aurora + Socrates ...</p>",
+        "id": 266431746,
+        "sender_full_name": "Richard",
+        "timestamp": 1640873936
+    }
+]

@@ -1,0 +1,132 @@
+<html>
+<head><meta charset="utf-8"><title>release 0.3 · general · Zulip Chat Archive</title></head>
+<h2>Stream: <a href="http://tisonkun.org/zulip-archive/stream/306467-general/index.html">general</a></h2>
+<h3>Topic: <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html">release 0.3</a></h3>
+
+<hr>
+
+<base href="https://engula.zulipchat.com/">
+
+<head><link href="http://tisonkun.org/zulip-archive/style.css" rel="stylesheet"></head>
+
+<a name="264014971"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264014971" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264014971">(Dec 07 2021 at 15:16)</a>:</h4>
+<p>I think release 0.2 is almost settled. We can start planning about release 0.3 :)</p>
+
+
+
+<a name="264015590"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264015590" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264015590">(Dec 07 2021 at 15:21)</a>:</h4>
+<p>We can set the release date to Jan 28, 2022, before the spring festival.</p>
+
+
+
+<a name="264015867"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264015867" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264015867">(Dec 07 2021 at 15:23)</a>:</h4>
+<p>The primary goal is to make Engula run on k8s, with the corresponding kernel, journal, storage implementations.</p>
+
+
+
+<a name="264837803"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264837803" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264837803">(Dec 14 2021 at 10:37)</a>:</h4>
+<p>I think I was too obsessive about the underlying architecture of Engula, instead of thinking about how users can use Engula to do anything useful. The result is that Engula is very unuseful except for demonstrating some fancy ideas so far. Another problem is that, without a realistic use case, it's hard to design the underlying infrastructure. Because almost everything depends on the upper-level applications. Saying something can do anything accordingly is not very constructive.<br>
+So instead of spending more time working on the infrastructure, I think we should try to deliver something more useful for potential users. Specifically, users here mean those who may use a specific Engula engine to build something. Hence, I suggest that we should build a decent, flagship storage engine first, and optimize the underlying components along with the engine as we get more context from it.</p>
+
+
+
+<a name="264838632"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264838632" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264838632">(Dec 14 2021 at 10:44)</a>:</h4>
+<p>And about the flagship engine, I am glad if someone can bring me interesting ideas. Otherwise, I will consider bringing some ideas described <a href="https://github.com/engula/engula/discussions/55">here</a> before.</p>
+
+
+
+<a name="264841219"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264841219" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> p4tr1ck <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264841219">(Dec 14 2021 at 11:08)</a>:</h4>
+<p>Coincidentally.  I think to construct a distributed rocksdb should be enough to verify the ability of Engula?</p>
+
+
+
+<a name="264841336"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264841336" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> p4tr1ck <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264841336">(Dec 14 2021 at 11:09)</a>:</h4>
+<p>The reason is that it is simple enough, but can cover all cases without introducing unnecessary complexity.</p>
+
+
+
+<a name="264841485"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264841485" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> p4tr1ck <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264841485">(Dec 14 2021 at 11:11)</a>:</h4>
+<p>BTW, should we open a discussion to formally discuss this topic so that others can index.</p>
+
+
+
+<a name="264841806"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264841806" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264841806">(Dec 14 2021 at 11:14)</a>:</h4>
+<p>Yeah, I am going to open a discussion for this. But I am still thinking about some ideas. So maybe later.</p>
+
+
+
+<a name="264843056"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264843056" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264843056">(Dec 14 2021 at 11:27)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="460843">Richard</span> <a href="#narrow/stream/306467-general/topic/release.200.2E3/near/264837803">said</a>:</p>
+<blockquote>
+<p>I think I was too obsessive about the underlying architecture of Engula, instead of ...</p>
+</blockquote>
+<p>A minimal viable product will be exciting! Actually, when it comes to deployment topics, the first question is "what to deploy". I contacted with several k8s experts. While they're experienced on optimizing an existing deployment, they might be a unfamilar with defining the storage engine model :P</p>
+
+
+
+<a name="264843501"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264843501" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264843501">(Dec 14 2021 at 11:31)</a>:</h4>
+<p>Replicating a rocksdb or redis is a actually very reasonable choice. The only problem is that it doesn't seem to satisfy my own requirements. Which, in turn, doesn't make me passionate about it :)</p>
+
+
+
+<a name="264843787"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264843787" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264843787">(Dec 14 2021 at 11:34)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="456473">tison</span> <a href="#narrow/stream/306467-general/topic/release.200.2E3/near/264843056">said</a>:</p>
+<blockquote>
+<p>A minimal viable product will be exciting! Actually, when it comes to deployment topics, the first question is "what to deploy". I contacted with several k8s experts. While they're experienced on optimizing an existing deployment, they might be a unfamilar with defining the storage engine model :P</p>
+</blockquote>
+<p>Not sure if I get it right. Do you mean that they have no idea what Engula needs to deploy? Or they don't know what Engula is for?</p>
+
+
+
+<a name="264845072"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264845072" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> zojw <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264845072">(Dec 14 2021 at 11:47)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="462456">p4tr1ck</span> <a href="#narrow/stream/306467-general/topic/release.200.2E3/near/264841219">said</a>:</p>
+<blockquote>
+<p>Coincidentally.  I think to construct a distributed rocksdb should be enough to verify the ability of Engula?</p>
+</blockquote>
+<p>+1,  I had a question in my mind long time, what distance between "rocksdb engine" and "other nosql engine like redis/or table"? or "does table api/ redis api great impact on engine design", if not maybe we'd better build solid distribute rocksdb first~? ...or we may try prototype some engine to help engine design.... but I have no experience about this judge, but only feel solid rocksdb is important <span aria-label="sweat smile" class="emoji emoji-1f605" role="img" title="sweat smile">:sweat_smile:</span></p>
+
+
+
+<a name="264846402"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264846402" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264846402">(Dec 14 2021 at 11:58)</a>:</h4>
+<p><span class="user-mention" data-user-id="460845">@zojw</span> <span class="user-mention" data-user-id="462456">@p4tr1ck</span> Thanks for your feedback! I really appreciate it because sometimes I may take things for granted without other inputs. I will think more about it then.</p>
+
+
+
+<a name="264851020"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264851020" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264851020">(Dec 14 2021 at 12:41)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="460843">Richard</span> <a href="#narrow/stream/306467-general/topic/release.200.2E3/near/264843787">said</a>:</p>
+<blockquote>
+<p>Not sure if I get it right. Do you mean that they have no idea what Engula needs to deploy? Or they don't know what Engula is for?</p>
+</blockquote>
+<p>The latter. Before we build a useful engine, one can hardly understand components' responsibility and how they should be deployed optimally. Remember how we changed concepts multiple times, it's hard to discuss the deployment model before we build the storage engine model.</p>
+<p>An expert can say, "a cluster coordinator ...", but it should be mapped in a Kernel server; otherwise it's too abstract to implement. In another word, they know there should be several roles in a deployment, but it's meaningless before binding to the storage engine model.</p>
+
+
+
+<a name="264958669"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.3/near/264958669" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> p4tr1ck <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E3.html#264958669">(Dec 15 2021 at 02:46)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="460845">zojw</span> <a href="#narrow/stream/306467-general/topic/release.200.2E3/near/264845072">said</a>:</p>
+<blockquote>
+<p>+1,  I had a question in my mind long time, what distance between "rocksdb engine" and "other nosql engine like redis/or table"? or "does table api/ redis api great impact on engine design", if not maybe we'd better build solid distribute rocksdb first~? ...or we may try prototype some engine to help engine design.... but I have no experience about this judge, but only feel solid rocksdb is important <span aria-label="sweat smile" class="emoji emoji-1f605" role="img" title="sweat smile">:sweat_smile:</span></p>
+</blockquote>
+<p>API does affect engine design, in my opinion. If the engine layer can provide mechanism, many functions will be simpler and more efficient to implementation. A convincing example is the User Timestamp of rocksdb.</p>
+<p>I very much agree with @tison ’s statement: "it's meaningless before binding to the storage engine model". From this perspective, I prefer to choose a distributed engine that can quickly implement but provide sufficient verification scenarios. This is why I think a distributed rocksdb is suitable.</p>
+
+
+
+<hr><p>Last updated: Apr 07 2022 at 13:11 UTC</p>
+</html>

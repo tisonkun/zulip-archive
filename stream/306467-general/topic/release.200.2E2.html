@@ -1,0 +1,400 @@
+<html>
+<head><meta charset="utf-8"><title>release 0.2 · general · Zulip Chat Archive</title></head>
+<h2>Stream: <a href="http://tisonkun.org/zulip-archive/stream/306467-general/index.html">general</a></h2>
+<h3>Topic: <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html">release 0.2</a></h3>
+
+<hr>
+
+<base href="https://engula.zulipchat.com/">
+
+<head><link href="http://tisonkun.org/zulip-archive/style.css" rel="stylesheet"></head>
+
+<a name="263246856"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263246856" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263246856">(Dec 01 2021 at 05:37)</a>:</h4>
+<p>We have developed a lot of designs, concepts, and abstractions recently. We apply the principle of public designs and discussions (engula has no internal documents or discussion channels at all), which means that we talk about a lot of early ideas that are subject to change. While these ideas give more opportunities for the community to involve, they also confuse the community if they change rapidly. So in order to converge the work we have done so far, I suggest that we cut a simpler version 0.2 with the following features at the end of Dec 2021:</p>
+<ul>
+<li>A design document that explains existing concepts</li>
+<li>A hash engine that can use different kinds of kernels</li>
+<li>A kernel, journal, and storage abstraction</li>
+<li>A memory kernel that integrates the memory journal and memory storage</li>
+<li>A file kernel that integrates the file journal and file storage</li>
+<li>A grpc kernel that integrates the grpc journal and grpc storage</li>
+<li>A blog post that announces the v0.2 release, demonstrates the hash engine and explains some future plans.</li>
+</ul>
+<p>Specifically, I suggest cutting microunit off at v0.2 since we don't have a clear design about it for now. Then we can focus on resource management and deployment in v0.3.</p>
+
+
+
+<a name="263247011"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263247011" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263247011">(Dec 01 2021 at 05:39)</a>:</h4>
+<p><a href="https://github.com/engula/engula/pull/143">This PR</a> demonstrates some interactions between engine and kernel.</p>
+
+
+
+<a name="263248220"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263248220" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263248220">(Dec 01 2021 at 06:01)</a>:</h4>
+<blockquote>
+<p>I suggest cutting microunit off at v0.2</p>
+</blockquote>
+<p>Today I consider this topic also. I agree with you that we don't have to deliver multiple concepts about deployment before we have a clear design and so does microunit. However, we should still deliver a basic usable executable in v0.2 so that early users can explore the software and inspire ideas.</p>
+
+
+
+<a name="263248309"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263248309" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263248309">(Dec 01 2021 at 06:03)</a>:</h4>
+<p>Let's group discussions about releasing v0.2.</p>
+
+
+
+<a name="263248477"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263248477" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263248477">(Dec 01 2021 at 06:07)</a>:</h4>
+<p>Users can use the memory/file kernel as a library. For the grpc kernel, we need to provide a binary to start a kernel service, then users can start an engine that connects to the kernel service.</p>
+
+
+
+<a name="263248585"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263248585" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263248585">(Dec 01 2021 at 06:09)</a>:</h4>
+<p>I'm writing a personal blog about the current state of Engula and plan to list something as you posted above.</p>
+<ul>
+<li>We've almost finished basic implementations for storage/journal that supports the engine.</li>
+<li>
+<p>The remaining works for cutting a release are:</p>
+<ol>
+<li>Complete <code>engine</code> and thus provide a basic usable API.</li>
+<li>Deliver a basic executable that one can start a standalone service.</li>
+</ol>
+</li>
+</ul>
+
+
+
+<a name="263248694"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263248694" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263248694">(Dec 01 2021 at 06:11)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="460843">Richard</span> <a href="#narrow/stream/306467-general/topic/release.20v0.2E2/near/263248477">said</a>:</p>
+<blockquote>
+<p>Users can use the memory/file kernel as a library. For the grpc kernel, we need to provide a binary to start a kernel service, then users can start an engine that connects to the kernel service.</p>
+</blockquote>
+<p>For as a service usage, we can deliver some examples. But IIRC in a <a href="https://github.com/engula/engula/pull/136#issuecomment-981244218">previous discussion</a> we reached a consensus that:</p>
+<blockquote>
+<p>LocalKernel means a standalone Kernel that allocates all units at the same node. It can instantiate any journal/storage instance. The current implementation in this PR is a stub that shadows this composition but restricts to mem implementation. Other candidates are KernelService only which talks to microunit for requesting resources to deploy units.</p>
+</blockquote>
+<p>What do you mean by a "memory/file kernel"?</p>
+
+
+
+<a name="263248840"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263248840" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263248840">(Dec 01 2021 at 06:14)</a>:</h4>
+<p>I think we still miss the following things:</p>
+<ul>
+<li>A local file journal described <a href="https://github.com/engula/engula/issues/128">here</a></li>
+<li>Some integrations to implement a file/grpc kernel</li>
+<li>A blog post and some future plans, of course</li>
+</ul>
+
+
+
+<a name="263248962"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263248962" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263248962">(Dec 01 2021 at 06:17)</a>:</h4>
+<p>From <a href="https://github.com/engula/engula/pull/143">#143</a> it seems that:</p>
+<ul>
+<li><code>engine</code> supersedes previous <code>API</code>;</li>
+<li><code>kernel</code> supersedes previous <code>engine</code>, which is a facade of storage/journal/background.</li>
+</ul>
+<p>And the previous <code>kernel</code> as a deployment concept dismiss. No concept cares about how to deploy now.</p>
+
+
+
+<a name="263249242"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263249242" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263249242">(Dec 01 2021 at 06:21)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="456473">tison</span> <a href="#narrow/stream/306467-general/topic/release.20v0.2E2/near/263248694">said</a>:</p>
+<blockquote>
+<p><span class="user-mention silent" data-user-id="460843">Richard</span> <a href="#narrow/stream/306467-general/topic/release.20v0.2E2/near/263248477">said</a>:<br>
+What do you mean by a "memory/file kernel"?</p>
+</blockquote>
+<p>Let's drop the unit things for now and consider how things work from the perspective of users now. So the topmost concept is <code>engine</code>. We may provide different kinds of engines, for example, <code>map</code>, <code>hash</code>, etc. An engine can use a kernel to persist its data and the same engine can be plugged with different kinds of kernels. For example, a memory kernel, which stores everything in memory; a file kernel, which stores everything in files. So a kernel implementation is an integration (or solution) of different kinds of journal, storage, etc.</p>
+
+
+
+<a name="263249715"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263249715" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263249715">(Dec 01 2021 at 06:30)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="456473">tison</span> <a href="#narrow/stream/306467-general/topic/release.20v0.2E2/near/263248962">said</a>:</p>
+<blockquote>
+<p>And the previous <code>kernel</code> as a deployment concept dismiss. No concept cares about how to deploy now.</p>
+</blockquote>
+<p>We can still use microunit for deployment and resource management.</p>
+
+
+
+<a name="263250462"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263250462" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263250462">(Dec 01 2021 at 06:44)</a>:</h4>
+<p>Sounds good. Though we don't deliver microunit at 0.2, we don't separate deployment responsibility to both <code>Kernel</code> &amp; microunit anymore. A kernel will acts as a dispatcher/facade of the whole storage engine. And all effective deployment/resourcemanagement actions is applied by microunit.</p>
+
+
+
+<a name="263250645"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263250645" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263250645">(Dec 01 2021 at 06:48)</a>:</h4>
+<p>Yes, I think we are on the same page now.a</p>
+
+
+
+<a name="263250674"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263250674" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263250674">(Dec 01 2021 at 06:49)</a>:</h4>
+<p>I am going to update the v0.2 roadmap and stuff, and then see how we work towards the release.</p>
+
+
+
+<a name="263436310"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263436310" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263436310">(Dec 02 2021 at 13:27)</a>:</h4>
+<p>Hmm, maybe we can let <a href="https://github.com/tokio-rs/mini-redis">mini-redis</a> run on our hash engine. I think the job should not be hard since <code>mini-redis</code> stores everything in a <a href="https://github.com/tokio-rs/mini-redis/blob/master/src/db.rs#L64">HashMap</a>. It will be an interesting way to demonstrate the usage of our hash engine in v0.2.</p>
+
+
+
+<a name="263449212"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263449212" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263449212">(Dec 02 2021 at 14:59)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="460843">Richard</span> <a href="#narrow/stream/306467-general/topic/release.20v0.2E2/near/263436310">said</a>:</p>
+<blockquote>
+<p>Hmm, maybe we can let <a href="https://github.com/tokio-rs/mini-redis">mini-redis</a> run on our hash engine. I think the job should not be hard since <code>mini-redis</code> stores everything in a <a href="https://github.com/tokio-rs/mini-redis/blob/master/src/db.rs#L64">HashMap</a>. It will be an interesting way to demonstrate the usage of our hash engine in v0.2.</p>
+</blockquote>
+<p>I'm thinking of running Redis protocal also, since it has fruitful collection APIs, which is Engula wants to deliver to users.</p>
+
+
+
+<a name="263451533"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263451533" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263451533">(Dec 02 2021 at 15:13)</a>:</h4>
+<p>We can consider working on that once we get <a href="https://github.com/engula/engula/pull/143">https://github.com/engula/engula/pull/143</a> landed :)</p>
+
+
+
+<a name="263970649"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263970649" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263970649">(Dec 07 2021 at 08:29)</a>:</h4>
+<p>I think we can set the earliest release date to Dec 17.</p>
+
+
+
+<a name="263972382"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263972382" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263972382">(Dec 07 2021 at 08:50)</a>:</h4>
+<p>I commented on the <a href="https://github.com/engula/engula/issues/144">release issue</a> about tasks for a release. Basically, they're:</p>
+<ol>
+<li>Push a new tag v0.2.0.</li>
+<li>Create a source release from the tag, and also an announcement about the release.</li>
+<li>Publish the crates on <a href="http://crates.io">crates.io</a>.</li>
+</ol>
+<p>Apart from the release procedure, documents and blogs about how to play with v0.2.0 are admirable.</p>
+
+
+
+<a name="263973406"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263973406" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263973406">(Dec 07 2021 at 09:01)</a>:</h4>
+<p>I think we can add a "Docs" section to the homepage for user documents <span aria-label="thinking" class="emoji emoji-1f914" role="img" title="thinking">:thinking:</span></p>
+
+
+
+<a name="263973508"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263973508" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263973508">(Dec 07 2021 at 09:02)</a>:</h4>
+<p>Another option is to use Github Wiki</p>
+
+
+
+<a name="263974269"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263974269" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> zojw <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263974269">(Dec 07 2021 at 09:10)</a>:</h4>
+<p>github wiki seems unfriendly to review &amp; modify docs by multiple peoples - -?</p>
+
+
+
+<a name="263974305"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263974305" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263974305">(Dec 07 2021 at 09:10)</a>:</h4>
+<p>If choose from either of these, I vote for a "Docs"  section on the homepage. GitHub Wiki is somehow a premature feature and out of maintenance. The biggest shortcomings are:</p>
+<ol>
+<li>You cannot review and merge, but only grant edit permission.</li>
+<li>Pages layout is weird and can be hardly handled by code (you can only edit by the Web UI).</li>
+</ol>
+
+
+
+<a name="263974978"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263974978" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263974978">(Dec 07 2021 at 09:17)</a>:</h4>
+<p>Hmm, no wonder I didn't see many people using Github Wiki.</p>
+
+
+
+<a name="263975625"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/263975625" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#263975625">(Dec 07 2021 at 09:24)</a>:</h4>
+<p>Or maybe we just need to write some good Rust crates docs. They will be published to <a href="http://docs.rs">docs.rs</a>.</p>
+
+
+
+<a name="264143701"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/264143701" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#264143701">(Dec 08 2021 at 11:44)</a>:</h4>
+<p>I realized that I was confused about Engula's users before. I used to think that users can combine engines and kernels in arbitrary ways as they want. That's why the example code <a href="https://github.com/engula/engula/blob/main/examples/hash_engine.rs">here</a> requires users to create a kernel and an engine separately. However, I think I was wrong. <strong>Engula's users should be those who use a specific engine to build their databases. They don't need to know about the kernel/journal/storage concepts at all.</strong> All they need to know is how to open a specific engine and use it. For example, if they want a memory hash engine, they simply open a memory hash engine. Or if they want a grpc hash engine, they deploy a grpc hash engine server and then open a hash engine with the server address.</p>
+<p><strong>So it is the engine that makes the final decision about how modules should compose, not the kernel.</strong> In this case, we don't really need to make a general kernel that can serve all kinds of engines. We can let each engine build its own specific kernel. It also solves the background jobs problem <a href="https://github.com/engula/engula/issues/66#issuecomment-987871907">here</a> because an engine can somehow embed its background job handler to its kernel.</p>
+
+
+
+<a name="264144679"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/264144679" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#264144679">(Dec 08 2021 at 11:57)</a>:</h4>
+<p>Of course, for those who want to build their engines, they can do whatever they want and we simply offer the capabilities to them. The philosophy of <em>making the easy things easy, and the hard things possible</em> applies here.</p>
+
+
+
+<a name="264159760"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/264159760" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> p4tr1ck <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#264159760">(Dec 08 2021 at 14:09)</a>:</h4>
+<p><span class="user-mention" data-user-id="460843">@Richard</span> <br>
+<span aria-label="joy" class="emoji emoji-1f602" role="img" title="joy">:joy:</span>  So is it still needs to do that provide a binary to start kernel server? Shall I add engine server instead of kernel server?</p>
+
+
+
+<a name="264160300"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/264160300" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#264160300">(Dec 08 2021 at 14:13)</a>:</h4>
+<p><span class="user-mention" data-user-id="462456">@p4tr1ck</span> I think you can still finish the job as we discussed before. I may re-organize some code later, though.</p>
+
+
+
+<a name="264261423"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/264261423" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#264261423">(Dec 09 2021 at 06:16)</a>:</h4>
+<p><span class="user-mention" data-user-id="462456">@p4tr1ck</span> have you been working on the binary thing? If not, you can leave that to me, since I am thinking about how to re-organize things.</p>
+
+
+
+<a name="264262999"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/264262999" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> p4tr1ck <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#264262999">(Dec 09 2021 at 06:51)</a>:</h4>
+<p><span class="user-mention" data-user-id="460843">@Richard</span>  Yes, I have already submitted a PR.</p>
+
+
+
+<a name="264263267"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/264263267" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#264263267">(Dec 09 2021 at 06:56)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="462456">p4tr1ck</span> <a href="#narrow/stream/306467-general/topic/release.200.2E2/near/264262999">said</a>:</p>
+<blockquote>
+<p><span class="user-mention silent" data-user-id="460843">Richard</span>  Yes, I have already submitted a PR.</p>
+</blockquote>
+<p>All right, then. Let's work with your PR first :)</p>
+
+
+
+<a name="264409197"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/264409197" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> p4tr1ck <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#264409197">(Dec 10 2021 at 06:56)</a>:</h4>
+<p>Hi, all. I have post my thoughts on how do user setup an engine here: <a href="https://github.com/engula/engula/discussions/182#discussioncomment-1783820">https://github.com/engula/engula/discussions/182#discussioncomment-1783820</a>, welcome to discuss.</p>
+
+
+
+<a name="265254807"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265254807" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265254807">(Dec 17 2021 at 05:08)</a>:</h4>
+<p>Hi, I have published the engula 0.2 crate! You can help to verify <a href="https://github.com/engula/engula.github.io/blob/958e7082205723801a5c7f5769e8b1b8efcb648f/docs/posts/tutorial-0.2.md">the tutorial</a> now <span aria-label="smiley" class="emoji emoji-1f603" role="img" title="smiley">:smiley:</span></p>
+
+
+
+<a name="265254842"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265254842" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265254842">(Dec 17 2021 at 05:09)</a>:</h4>
+<p><span class="user-mention" data-user-id="456473">@tison</span> Seems I can't do wildcard mentions, can you give me some permissions?</p>
+
+
+
+<a name="265254989"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265254989" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265254989">(Dec 17 2021 at 05:12)</a>:</h4>
+<p><span class="user-mention" data-user-id="460843">@Richard</span> please try again.</p>
+
+
+
+<a name="265255024"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265255024" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265255024">(Dec 17 2021 at 05:13)</a>:</h4>
+<p>Hi, <span class="user-mention" data-user-id="*">@everyone</span>, I have published the engula 0.2 crate! You can help to verify <a href="https://github.com/engula/engula.github.io/blob/958e7082205723801a5c7f5769e8b1b8efcb648f/docs/posts/tutorial-0.2.md">the tutorial</a> now <span aria-label="smiley" class="emoji emoji-1f603" role="img" title="smiley">:smiley:</span></p>
+
+
+
+<a name="265257705"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265257705" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265257705">(Dec 17 2021 at 06:09)</a>:</h4>
+<p><span class="user-mention" data-user-id="456473">@tison</span> Can you help to tweet a release message?</p>
+
+
+
+<a name="265261164"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265261164" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265261164">(Dec 17 2021 at 07:18)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="460843">Richard</span> <a href="#narrow/stream/306467-general/topic/release.200.2E2/near/265257705">said</a>:</p>
+<blockquote>
+<p><span class="user-mention silent" data-user-id="456473">tison</span> Can you help to tweet a release message?</p>
+</blockquote>
+<p>Of course I'm writing it :P</p>
+
+
+
+<a name="265261378"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265261378" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265261378">(Dec 17 2021 at 07:23)</a>:</h4>
+<p>BTW, I also posted to Reddit <a href="https://www.reddit.com/r/rust/comments/riba4x/announce_engula_02/">here</a>.</p>
+
+
+
+<a name="265261723"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265261723" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265261723">(Dec 17 2021 at 07:29)</a>:</h4>
+<ul>
+<li><a href="https://twitter.com/engulaio/status/1471743304433692674">https://twitter.com/engulaio/status/1471743304433692674</a></li>
+<li><a href="https://twitter.com/engulaio/status/1471744048574595073">https://twitter.com/engulaio/status/1471744048574595073</a></li>
+</ul>
+<p>Here they are. But I notice that the page is lack of metadata so that it cannot be rendered. Let me create an issue for it.</p>
+<div class="inline-preview-twitter"><div class="twitter-tweet"><a href="https://twitter.com/engulaio/status/1471743304433692674"><img class="twitter-avatar" src="https://uploads.zulipusercontent.net/915287824c38afa7e764af2591e794a14c2a51ad/68747470733a2f2f7062732e7477696d672e636f6d2f70726f66696c655f696d616765732f313435383637373630383933383330373538382f51737a79326f6b505f6e6f726d616c2e706e67"></a><p>We’re pleased to announce the release of Engula 0.2, the first official release!🥳<span aria-label="rocket" class="emoji emoji-1f680" role="img" title="rocket">:rocket:</span>
+
+Engula 0.2 comes with a hash engine that supports simple key-value operations, and three kernels that persist data in different places.
+<a href="https://t.co/5x7PW92Ilg">https://engula.io/posts/release-0.2/</a></p><span>- Engula (@engulaio)</span></div></div><div class="inline-preview-twitter"><div class="twitter-tweet"><a href="https://twitter.com/engulaio/status/1471744048574595073"><img class="twitter-avatar" src="https://uploads.zulipusercontent.net/915287824c38afa7e764af2591e794a14c2a51ad/68747470733a2f2f7062732e7477696d672e636f6d2f70726f66696c655f696d616765732f313435383637373630383933383330373538382f51737a79326f6b505f6e6f726d616c2e706e67"></a><p>We’ve also prepared a tutorial to show you how to play with an #Engula engine.
+<a href="https://t.co/xxMLlne83D">https://engula.io/posts/tutorial-0.2/</a></p><span>- Engula (@engulaio)</span></div></div>
+
+
+
+<a name="265261811"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265261811" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265261811">(Dec 17 2021 at 07:30)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="460843">Richard</span> <a href="#narrow/stream/306467-general/topic/release.200.2E2/near/265261378">said</a>:</p>
+<blockquote>
+<p>BTW, I also posted to Reddit <a href="https://www.reddit.com/r/rust/comments/riba4x/announce_engula_02/">here</a>.</p>
+</blockquote>
+<p>Nice! I think a post to <a href="https://news.ycombinator.com/">Hacker News</a> would be also great.</p>
+
+
+
+<a name="265262547"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265262547" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265262547">(Dec 17 2021 at 07:43)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="456473">tison</span> <a href="#narrow/stream/306467-general/topic/release.200.2E2/near/265261811">said</a>:</p>
+<blockquote>
+<p><span class="user-mention silent" data-user-id="460843">Richard</span> <a href="#narrow/stream/306467-general/topic/release.200.2E2/near/265261378">said</a>:</p>
+<blockquote>
+<p>BTW, I also posted to Reddit <a href="https://www.reddit.com/r/rust/comments/riba4x/announce_engula_02/">here</a>.</p>
+</blockquote>
+<p>Nice! I think a post to <a href="https://news.ycombinator.com/">Hacker News</a> would be also great.</p>
+</blockquote>
+<p>I'll do it so let me take the lock :)</p>
+
+
+
+<a name="265263034"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265263034" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265263034">(Dec 17 2021 at 07:50)</a>:</h4>
+<p><a href="https://news.ycombinator.com/item?id=29589129">Here</a> it is.</p>
+
+
+
+<a name="265264028"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265264028" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265264028">(Dec 17 2021 at 08:02)</a>:</h4>
+<p><span class="user-mention silent" data-user-id="456473">tison</span> <a href="#narrow/stream/306467-general/topic/release.200.2E2/near/265263034">said</a>:</p>
+<blockquote>
+<p><a href="https://news.ycombinator.com/item?id=29589129">Here</a> it is.</p>
+</blockquote>
+<p>Oh, thanks, but the link doesn't seem work?</p>
+
+
+
+<a name="265274895"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265274895" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> min.wu <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265274895">(Dec 17 2021 at 09:59)</a>:</h4>
+<p><span aria-label="tada" class="emoji emoji-1f389" role="img" title="tada">:tada:</span></p>
+
+
+
+<a name="265276691"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265276691" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> tison <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265276691">(Dec 17 2021 at 10:12)</a>:</h4>
+<p><span class="user-mention" data-user-id="460843">@Richard</span> Interesting. I sign up the account today and I can view the post when login. If you have an account, you can repost the news🤪</p>
+
+
+
+<a name="265287585"></a>
+<h4><a href="https://engula.zulipchat.com/#narrow/stream/306467-general/topic/release%200.2/near/265287585" class="zl"><img src="http://tisonkun.org/zulip-archive/assets/img/zulip.svg" alt="view this post on Zulip" style="width:20px;height:20px;"></a> Richard <a href="http://tisonkun.org/zulip-archive/stream/306467-general/topic/release.200.2E2.html#265287585">(Dec 17 2021 at 12:09)</a>:</h4>
+<p>Here is the <a href="https://news.ycombinator.com/item?id=29591088">HN link</a>.</p>
+
+
+
+<hr><p>Last updated: Apr 07 2022 at 13:11 UTC</p>
+</html>

@@ -1,0 +1,26 @@
+[
+    {
+        "content": "<p>Here is the <a href=\"https://github.com/engula/engula/discussions/54\">microunit</a> discussion. We're going to deliver a standalone deployment and a kubernetes based deployment.</p>",
+        "id": 263087192,
+        "sender_full_name": "tison",
+        "timestamp": 1638232256
+    },
+    {
+        "content": "<p>I found another concept dimension we can use to clarify our thoughts, that when we talk to a Kernel, it can be an interface talk to a Kernel implementation, or a KernelServer that running in distributed deployment environment.</p>",
+        "id": 264449111,
+        "sender_full_name": "tison",
+        "timestamp": 1639144086
+    },
+    {
+        "content": "<p>I realized that in v0.3 we don't have to implement complex server management logic, but let all units register themselves to the kernel, and the operator defines the deployment. It's somehow static deployment and we can later implement schedule logics.</p>",
+        "id": 264548322,
+        "sender_full_name": "tison",
+        "timestamp": 1639208844
+    },
+    {
+        "content": "<p>In Flink, it's the so-called standalone on k8s and k8s native deployment.</p>",
+        "id": 264548364,
+        "sender_full_name": "tison",
+        "timestamp": 1639208898
+    }
+]
